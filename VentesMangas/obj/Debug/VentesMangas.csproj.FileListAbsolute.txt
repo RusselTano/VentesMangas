@@ -1,0 +1,10 @@
+C:\Users\tanol.DYLANE\OneDrive - MONCCNB\2CCNB\Session1\C#.NET\Devoirs\VentesMangas\VentesMangas\bin\Debug\VentesMangas.exe.config
+C:\Users\tanol.DYLANE\OneDrive - MONCCNB\2CCNB\Session1\C#.NET\Devoirs\VentesMangas\VentesMangas\bin\Debug\VentesMangas.exe
+C:\Users\tanol.DYLANE\OneDrive - MONCCNB\2CCNB\Session1\C#.NET\Devoirs\VentesMangas\VentesMangas\bin\Debug\VentesMangas.pdb
+C:\Users\tanol.DYLANE\OneDrive - MONCCNB\2CCNB\Session1\C#.NET\Devoirs\VentesMangas\VentesMangas\obj\Debug\VentesMangas.csproj.AssemblyReference.cache
+C:\Users\tanol.DYLANE\OneDrive - MONCCNB\2CCNB\Session1\C#.NET\Devoirs\VentesMangas\VentesMangas\obj\Debug\VentesMangas.Properties.Resources.resources
+C:\Users\tanol.DYLANE\OneDrive - MONCCNB\2CCNB\Session1\C#.NET\Devoirs\VentesMangas\VentesMangas\obj\Debug\VentesMangas.VentesMangasForm.resources
+C:\Users\tanol.DYLANE\OneDrive - MONCCNB\2CCNB\Session1\C#.NET\Devoirs\VentesMangas\VentesMangas\obj\Debug\VentesMangas.csproj.GenerateResource.cache
+C:\Users\tanol.DYLANE\OneDrive - MONCCNB\2CCNB\Session1\C#.NET\Devoirs\VentesMangas\VentesMangas\obj\Debug\VentesMangas.csproj.CoreCompileInputs.cache
+C:\Users\tanol.DYLANE\OneDrive - MONCCNB\2CCNB\Session1\C#.NET\Devoirs\VentesMangas\VentesMangas\obj\Debug\VentesMangas.exe
+C:\Users\tanol.DYLANE\OneDrive - MONCCNB\2CCNB\Session1\C#.NET\Devoirs\VentesMangas\VentesMangas\obj\Debug\VentesMangas.pdb
