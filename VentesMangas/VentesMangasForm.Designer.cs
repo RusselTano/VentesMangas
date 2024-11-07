@@ -77,12 +77,12 @@
             // titreLabel
             // 
             this.titreLabel.AutoSize = true;
-            this.titreLabel.Font = new System.Drawing.Font("Cooper Black", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titreLabel.Font = new System.Drawing.Font("Cooper Black", 40.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titreLabel.ForeColor = System.Drawing.Color.Crimson;
-            this.titreLabel.Location = new System.Drawing.Point(173, 0);
+            this.titreLabel.Location = new System.Drawing.Point(217, 0);
             this.titreLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.titreLabel.Name = "titreLabel";
-            this.titreLabel.Size = new System.Drawing.Size(936, 114);
+            this.titreLabel.Size = new System.Drawing.Size(632, 77);
             this.titreLabel.TabIndex = 2;
             this.titreLabel.Text = "Ventes de Mangas";
             // 
@@ -326,7 +326,7 @@
             this.genresLabel.Location = new System.Drawing.Point(36, 134);
             this.genresLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.genresLabel.Name = "genresLabel";
-            this.genresLabel.Size = new System.Drawing.Size(68, 20);
+            this.genresLabel.Size = new System.Drawing.Size(54, 16);
             this.genresLabel.TabIndex = 21;
             this.genresLabel.Text = "Genres:";
             // 
@@ -336,7 +336,7 @@
             this.titresLabel.Location = new System.Drawing.Point(36, 89);
             this.titresLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.titresLabel.Name = "titresLabel";
-            this.titresLabel.Size = new System.Drawing.Size(46, 20);
+            this.titresLabel.Size = new System.Drawing.Size(37, 16);
             this.titresLabel.TabIndex = 20;
             this.titresLabel.Text = "Titre:";
             // 
@@ -348,7 +348,7 @@
             this.aideToolStripMenuItem});
             this.transactionsMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.transactionsMenuStrip.Name = "transactionsMenuStrip";
-            this.transactionsMenuStrip.Size = new System.Drawing.Size(1436, 38);
+            this.transactionsMenuStrip.Size = new System.Drawing.Size(1149, 28);
             this.transactionsMenuStrip.TabIndex = 26;
             this.transactionsMenuStrip.Text = "menuStrip1";
             // 
@@ -393,12 +393,13 @@
             // enregistrerButton
             // 
             this.enregistrerButton.BackColor = System.Drawing.Color.Green;
+            this.enregistrerButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.enregistrerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.enregistrerButton.ForeColor = System.Drawing.Color.White;
             this.enregistrerButton.Location = new System.Drawing.Point(609, 593);
             this.enregistrerButton.Margin = new System.Windows.Forms.Padding(4);
             this.enregistrerButton.Name = "enregistrerButton";
-            this.enregistrerButton.Size = new System.Drawing.Size(212, 94);
+            this.enregistrerButton.Size = new System.Drawing.Size(191, 65);
             this.enregistrerButton.TabIndex = 28;
             this.enregistrerButton.Text = "&Enregistrer";
             this.enregistrerButton.UseVisualStyleBackColor = false;
@@ -406,19 +407,21 @@
             // quitterButton
             // 
             this.quitterButton.BackColor = System.Drawing.Color.Crimson;
+            this.quitterButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.quitterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quitterButton.ForeColor = System.Drawing.Color.White;
-            this.quitterButton.Location = new System.Drawing.Point(888, 593);
+            this.quitterButton.Location = new System.Drawing.Point(914, 593);
             this.quitterButton.Margin = new System.Windows.Forms.Padding(4);
             this.quitterButton.Name = "quitterButton";
-            this.quitterButton.Size = new System.Drawing.Size(212, 94);
+            this.quitterButton.Size = new System.Drawing.Size(186, 65);
             this.quitterButton.TabIndex = 29;
             this.quitterButton.Text = "&Quitter";
             this.quitterButton.UseVisualStyleBackColor = false;
+            this.quitterButton.Click += new System.EventHandler(this.quitterButton_Click);
             // 
             // logoPanel
             // 
-            this.logoPanel.BackColor = System.Drawing.Color.LightGray;
+            this.logoPanel.BackColor = System.Drawing.Color.White;
             this.logoPanel.Controls.Add(this.titreLabel);
             this.logoPanel.Controls.Add(this.logoGauchePictureBox);
             this.logoPanel.Controls.Add(this.mangasPictureBox);
@@ -467,7 +470,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
+            this.CancelButton = this.quitterButton;
             this.ClientSize = new System.Drawing.Size(1149, 716);
             this.Controls.Add(this.logoPanel);
             this.Controls.Add(this.quitterButton);
@@ -475,10 +480,12 @@
             this.Controls.Add(this.transactionsMenuStrip);
             this.Controls.Add(this.transactionGroupBox);
             this.Controls.Add(this.clientGroupBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "VentesMangasForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ventes de mangas";
+            this.Load += new System.EventHandler(this.VentesMangasForm_Load);
             this.clientGroupBox.ResumeLayout(false);
             this.clientGroupBox.PerformLayout();
             this.transactionGroupBox.ResumeLayout(false);

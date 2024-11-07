@@ -8,3 +8,7 @@ C:\Users\tanol.DYLANE\OneDrive - MONCCNB\2CCNB\Session1\C#.NET\Devoirs\VentesMan
 C:\Users\tanol.DYLANE\OneDrive - MONCCNB\2CCNB\Session1\C#.NET\Devoirs\VentesMangas\VentesMangas\obj\Debug\VentesMangas.csproj.CoreCompileInputs.cache
 C:\Users\tanol.DYLANE\OneDrive - MONCCNB\2CCNB\Session1\C#.NET\Devoirs\VentesMangas\VentesMangas\obj\Debug\VentesMangas.exe
 C:\Users\tanol.DYLANE\OneDrive - MONCCNB\2CCNB\Session1\C#.NET\Devoirs\VentesMangas\VentesMangas\obj\Debug\VentesMangas.pdb
+C:\Users\tanol.DYLANE\OneDrive - MONCCNB\2CCNB\Session1\C#.NET\Devoirs\VentesMangas\VentesMangas\bin\Debug\VentesMangas.xml
+C:\Users\tanol.DYLANE\OneDrive - MONCCNB\2CCNB\Session1\C#.NET\Devoirs\VentesMangas\VentesMangas\bin\Debug\Transaction.dll
+C:\Users\tanol.DYLANE\OneDrive - MONCCNB\2CCNB\Session1\C#.NET\Devoirs\VentesMangas\VentesMangas\bin\Debug\Transaction.pdb
+C:\Users\tanol.DYLANE\OneDrive - MONCCNB\2CCNB\Session1\C#.NET\Devoirs\VentesMangas\VentesMangas\obj\Debug\VentesMa.5F9E2836.Up2Date
