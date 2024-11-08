@@ -1,0 +1,16 @@
+# Ignorer le dossier .vs de Visual Studio
+.vs/
+
+# Ignorer les dossiers de sortie de build de Visual Studio
+bin/
+obj/
+
+# Ignorer les fichiers de configuration locaux de Visual Studio
+*.user
+*.suo
+
+# Ignorer les fichiers de logs et de packages
+*.log
+.DS_Store
+*.nupkg
+*.lock.json
