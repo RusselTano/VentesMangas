@@ -1,10 +1,13 @@
 # Ignorer le dossier .vs de Visual Studio
 .vs/
-
+.vs/VentesMangas/
 # Ignorer les dossiers de sortie de build de Visual Studio
 bin/
 obj/
-
+Transaction/bin/Debug/
+Transaction/obj/Debug/
+VentesMangas/bin/Debug/
+VentesMangas/obj/Debug/
 # Ignorer les fichiers de configuration locaux de Visual Studio
 *.user
 *.suo
