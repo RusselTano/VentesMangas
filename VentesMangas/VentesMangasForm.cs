@@ -25,8 +25,9 @@ using ce = VentesMangas.VentesMangasGeneraleClass.Erreurs;
 namespace VentesMangas
 {
     /// <summary>
-    /// Formulaire de gestion des ventes de mangas.
+    /// Saisie d'une transaction de vente de mangas
     /// </summary>
+    /// <remarks>Tous droits réservés: Dylane Tano Inc. 2025</remarks>
     public partial class VentesMangasForm : Form
     {
         #region Déclaration

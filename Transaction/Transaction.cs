@@ -29,14 +29,23 @@ namespace TransactionNS
         #endregion
 
         #region Initialisation des tableaux
+        /// <summary>
+        /// methode pour initialiser les titres
+        /// </summary>
         private void InitTitres()
         {
             tTitres = new string[5] { "Naruto", "Cardcaptor Sakura", "Berserk", "Your Lie in April", "Oyasumi Punpun" };
         }
+        /// <summary>
+        /// methode pour initialiser les genres
+        /// </summary>
         private void InitGenres()
         {
             tGenres = new string[5] { "Shonen", "Shojo", "Seinen", "Josei", "Seinen" };
         }
+        /// <summary>
+        /// methode pour initialiser les prix
+        /// </summary>
         private void InitPrix()
         {
             tPrix = new decimal[5,5]
@@ -60,6 +69,10 @@ namespace TransactionNS
         #endregion
 
         #region Titres de mangas
+        /// <summary>
+        /// methode pour retourner les titres
+        /// </summary>
+        /// <returns>un tableau de titre</returns>
         public string[] GetTitres()
         {
             return tTitres;
@@ -67,6 +80,10 @@ namespace TransactionNS
         #endregion
 
         #region Genres de mangas
+        /// <summary>
+        /// methode pour retourner les genres
+        /// </summary>
+        /// <returns>un tableau de genre</returns>
         public string[] GetGenres()
         {
             return tGenres;

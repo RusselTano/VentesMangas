@@ -16,6 +16,10 @@
 using ce = VentesMangas.VentesMangasGeneraleClass.Erreurs;
 namespace VentesMangas
 {
+    /// <summary>
+    /// Classe genrale dans la couche de resentation
+    /// </summary>
+    /// <remarks>Projet: VentesMangas</remarks>
     internal class VentesMangasGeneraleClass
     {
         #region Enumeration
