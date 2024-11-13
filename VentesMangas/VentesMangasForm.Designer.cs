@@ -1,6 +1,6 @@
 ﻿namespace VentesMangas
 {
-    partial class VentesMangasForm
+    public partial class VentesMangasForm
     {
         /// <summary>
         /// Required designer variable.
@@ -48,8 +48,8 @@
             this.dateLivraisonDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.dateLivraisonLabel = new System.Windows.Forms.Label();
             this.prixLabel = new System.Windows.Forms.Label();
-            this.diametresComboBox = new System.Windows.Forms.ComboBox();
-            this.marquesComboBox = new System.Windows.Forms.ComboBox();
+            this.genreComboBox = new System.Windows.Forms.ComboBox();
+            this.titreComboBox = new System.Windows.Forms.ComboBox();
             this.prixLLabel = new System.Windows.Forms.Label();
             this.genresLabel = new System.Windows.Forms.Label();
             this.titresLabel = new System.Windows.Forms.Label();
@@ -245,8 +245,8 @@
             this.transactionGroupBox.Controls.Add(this.dateLivraisonDateTimePicker);
             this.transactionGroupBox.Controls.Add(this.dateLivraisonLabel);
             this.transactionGroupBox.Controls.Add(this.prixLabel);
-            this.transactionGroupBox.Controls.Add(this.diametresComboBox);
-            this.transactionGroupBox.Controls.Add(this.marquesComboBox);
+            this.transactionGroupBox.Controls.Add(this.genreComboBox);
+            this.transactionGroupBox.Controls.Add(this.titreComboBox);
             this.transactionGroupBox.Controls.Add(this.prixLLabel);
             this.transactionGroupBox.Controls.Add(this.genresLabel);
             this.transactionGroupBox.Controls.Add(this.titresLabel);
@@ -288,27 +288,29 @@
             this.prixLabel.TabIndex = 25;
             this.prixLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // diametresComboBox
+            // genreComboBox
             // 
-            this.diametresComboBox.BackColor = System.Drawing.SystemColors.Control;
-            this.diametresComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.diametresComboBox.FormattingEnabled = true;
-            this.diametresComboBox.Location = new System.Drawing.Point(188, 130);
-            this.diametresComboBox.Margin = new System.Windows.Forms.Padding(4);
-            this.diametresComboBox.Name = "diametresComboBox";
-            this.diametresComboBox.Size = new System.Drawing.Size(265, 24);
-            this.diametresComboBox.TabIndex = 24;
+            this.genreComboBox.BackColor = System.Drawing.SystemColors.Control;
+            this.genreComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.genreComboBox.FormattingEnabled = true;
+            this.genreComboBox.Location = new System.Drawing.Point(188, 130);
+            this.genreComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.genreComboBox.Name = "genreComboBox";
+            this.genreComboBox.Size = new System.Drawing.Size(265, 24);
+            this.genreComboBox.TabIndex = 24;
+            this.genreComboBox.SelectedIndexChanged += new System.EventHandler(this.TransactionComboBox_SelectedIndexChanged);
             // 
-            // marquesComboBox
+            // titreComboBox
             // 
-            this.marquesComboBox.BackColor = System.Drawing.SystemColors.Control;
-            this.marquesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.marquesComboBox.FormattingEnabled = true;
-            this.marquesComboBox.Location = new System.Drawing.Point(188, 85);
-            this.marquesComboBox.Margin = new System.Windows.Forms.Padding(4);
-            this.marquesComboBox.Name = "marquesComboBox";
-            this.marquesComboBox.Size = new System.Drawing.Size(265, 24);
-            this.marquesComboBox.TabIndex = 23;
+            this.titreComboBox.BackColor = System.Drawing.SystemColors.Control;
+            this.titreComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.titreComboBox.FormattingEnabled = true;
+            this.titreComboBox.Location = new System.Drawing.Point(188, 85);
+            this.titreComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.titreComboBox.Name = "titreComboBox";
+            this.titreComboBox.Size = new System.Drawing.Size(265, 24);
+            this.titreComboBox.TabIndex = 23;
+            this.titreComboBox.SelectedIndexChanged += new System.EventHandler(this.TransactionComboBox_SelectedIndexChanged);
             // 
             // prixLLabel
             // 
@@ -371,7 +373,7 @@
             // quitterToolStripMenuItem
             // 
             this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-            this.quitterToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Shift) 
+            this.quitterToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Shift)
             | System.Windows.Forms.Keys.Q)));
             this.quitterToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
             this.quitterToolStripMenuItem.Text = "&Quitter";
@@ -408,6 +410,7 @@
             // 
             this.quitterButton.BackColor = System.Drawing.Color.Crimson;
             this.quitterButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.quitterButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.quitterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quitterButton.ForeColor = System.Drawing.Color.White;
             this.quitterButton.Location = new System.Drawing.Point(914, 593);
@@ -524,8 +527,8 @@
         private System.Windows.Forms.DateTimePicker dateLivraisonDateTimePicker;
         private System.Windows.Forms.Label dateLivraisonLabel;
         private System.Windows.Forms.Label prixLabel;
-        private System.Windows.Forms.ComboBox diametresComboBox;
-        private System.Windows.Forms.ComboBox marquesComboBox;
+        private System.Windows.Forms.ComboBox genreComboBox;
+        private System.Windows.Forms.ComboBox titreComboBox;
         private System.Windows.Forms.Label prixLLabel;
         private System.Windows.Forms.Label genresLabel;
         private System.Windows.Forms.Label titresLabel;
