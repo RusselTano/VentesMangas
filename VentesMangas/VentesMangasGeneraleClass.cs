@@ -26,9 +26,11 @@ namespace VentesMangas
         public enum Erreurs
         {
             CEErreurIndeterminee,
-            ECEPrixIntrouvable,
             CEErreurArgumentException,
             CEErreurSurCodesTypes,
+            ECEErreurPrix,
+            ECEErreurTitre,
+            ECEErreurGenre,
         }
         #endregion
 
@@ -43,7 +45,9 @@ namespace VentesMangas
 
             tMessagesErreursStr[(int)ce.CEErreurArgumentException] = "Paramètre incorrect pour le titre ou le genre.";
             tMessagesErreursStr[(int)ce.CEErreurIndeterminee] = "Erreur indéterminée. Contactez la personne ressource.";
-            tMessagesErreursStr[(int)ce.ECEPrixIntrouvable] = "Le prix du manga  ne peut être déterminé avec les indices fournie.";
+            tMessagesErreursStr[(int)ce.ECEErreurPrix] = "Le prix du pneu ne peut être déterminé avec les indices fournie.";
+            tMessagesErreursStr[(int)ce.ECEErreurTitre] = "Le titre du manga ne peut être déterminé avec les indices fournie.";
+            tMessagesErreursStr[(int)ce.ECEErreurGenre] = "Le genre du manga ne peut être déterminé avec les indices fournie.";
         }
         #endregion
     }

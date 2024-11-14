@@ -123,12 +123,12 @@
             // modeleMangaLabel
             // 
             this.modeleMangaLabel.AutoSize = true;
-            this.modeleMangaLabel.Location = new System.Drawing.Point(33, 466);
-            this.modeleMangaLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.modeleMangaLabel.Location = new System.Drawing.Point(24, 311);
+            this.modeleMangaLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.modeleMangaLabel.Name = "modeleMangaLabel";
-            this.modeleMangaLabel.Size = new System.Drawing.Size(176, 25);
+            this.modeleMangaLabel.Size = new System.Drawing.Size(120, 16);
             this.modeleMangaLabel.TabIndex = 29;
-            this.modeleMangaLabel.Text = "Modèle de Manga:";
+            this.modeleMangaLabel.Text = "Modèle de manga:";
             // 
             // typesComboBox
             // 
@@ -156,6 +156,7 @@
             this.telephoneMaskedTextBox.Name = "telephoneMaskedTextBox";
             this.telephoneMaskedTextBox.Size = new System.Drawing.Size(444, 29);
             this.telephoneMaskedTextBox.TabIndex = 26;
+            this.telephoneMaskedTextBox.Enter += new System.EventHandler(this.MaskedTextBox_Enter);
             // 
             // telephoneLabel
             // 
@@ -174,6 +175,7 @@
             this.codePostalMaskedTextBox.Name = "codePostalMaskedTextBox";
             this.codePostalMaskedTextBox.Size = new System.Drawing.Size(444, 29);
             this.codePostalMaskedTextBox.TabIndex = 24;
+            this.codePostalMaskedTextBox.Enter += new System.EventHandler(this.MaskedTextBox_Enter);
             // 
             // adresseMaskedTextBox
             // 
@@ -182,6 +184,7 @@
             this.adresseMaskedTextBox.Name = "adresseMaskedTextBox";
             this.adresseMaskedTextBox.Size = new System.Drawing.Size(444, 29);
             this.adresseMaskedTextBox.TabIndex = 23;
+            this.adresseMaskedTextBox.Enter += new System.EventHandler(this.MaskedTextBox_Enter);
             // 
             // prenomMaskedTextBox
             // 
@@ -190,6 +193,7 @@
             this.prenomMaskedTextBox.Name = "prenomMaskedTextBox";
             this.prenomMaskedTextBox.Size = new System.Drawing.Size(444, 29);
             this.prenomMaskedTextBox.TabIndex = 22;
+            this.prenomMaskedTextBox.Enter += new System.EventHandler(this.MaskedTextBox_Enter);
             // 
             // nomMaskedTextBox
             // 
@@ -198,6 +202,7 @@
             this.nomMaskedTextBox.Name = "nomMaskedTextBox";
             this.nomMaskedTextBox.Size = new System.Drawing.Size(444, 29);
             this.nomMaskedTextBox.TabIndex = 21;
+            this.nomMaskedTextBox.Enter += new System.EventHandler(this.MaskedTextBox_Enter);
             // 
             // codePostalLabel
             // 
@@ -408,6 +413,7 @@
             this.enregistrerButton.TabIndex = 28;
             this.enregistrerButton.Text = "&Enregistrer";
             this.enregistrerButton.UseVisualStyleBackColor = false;
+            this.enregistrerButton.Click += new System.EventHandler(this.enregistrerButton_Click);
             // 
             // quitterButton
             // 
