@@ -31,9 +31,9 @@
             this.titreLabel = new System.Windows.Forms.Label();
             this.clientGroupBox = new System.Windows.Forms.GroupBox();
             this.modelesComboBox = new System.Windows.Forms.ComboBox();
-            this.modeleVoitureLabel = new System.Windows.Forms.Label();
+            this.modeleMangaLabel = new System.Windows.Forms.Label();
             this.typesComboBox = new System.Windows.Forms.ComboBox();
-            this.typesVoituresLabel = new System.Windows.Forms.Label();
+            this.typesMangasLabel = new System.Windows.Forms.Label();
             this.telephoneMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.telephoneLabel = new System.Windows.Forms.Label();
             this.codePostalMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
@@ -79,19 +79,19 @@
             this.titreLabel.AutoSize = true;
             this.titreLabel.Font = new System.Drawing.Font("Cooper Black", 40.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titreLabel.ForeColor = System.Drawing.Color.Crimson;
-            this.titreLabel.Location = new System.Drawing.Point(217, 0);
-            this.titreLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.titreLabel.Location = new System.Drawing.Point(298, 0);
+            this.titreLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.titreLabel.Name = "titreLabel";
-            this.titreLabel.Size = new System.Drawing.Size(632, 77);
+            this.titreLabel.Size = new System.Drawing.Size(882, 108);
             this.titreLabel.TabIndex = 2;
             this.titreLabel.Text = "Ventes de Mangas";
             // 
             // clientGroupBox
             // 
             this.clientGroupBox.Controls.Add(this.modelesComboBox);
-            this.clientGroupBox.Controls.Add(this.modeleVoitureLabel);
+            this.clientGroupBox.Controls.Add(this.modeleMangaLabel);
             this.clientGroupBox.Controls.Add(this.typesComboBox);
-            this.clientGroupBox.Controls.Add(this.typesVoituresLabel);
+            this.clientGroupBox.Controls.Add(this.typesMangasLabel);
             this.clientGroupBox.Controls.Add(this.telephoneMaskedTextBox);
             this.clientGroupBox.Controls.Add(this.telephoneLabel);
             this.clientGroupBox.Controls.Add(this.codePostalMaskedTextBox);
@@ -102,11 +102,11 @@
             this.clientGroupBox.Controls.Add(this.adresseLabel);
             this.clientGroupBox.Controls.Add(this.prenomLabel);
             this.clientGroupBox.Controls.Add(this.nomLabel);
-            this.clientGroupBox.Location = new System.Drawing.Point(36, 326);
-            this.clientGroupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.clientGroupBox.Location = new System.Drawing.Point(50, 489);
+            this.clientGroupBox.Margin = new System.Windows.Forms.Padding(6);
             this.clientGroupBox.Name = "clientGroupBox";
-            this.clientGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.clientGroupBox.Size = new System.Drawing.Size(552, 361);
+            this.clientGroupBox.Padding = new System.Windows.Forms.Padding(6);
+            this.clientGroupBox.Size = new System.Drawing.Size(759, 542);
             this.clientGroupBox.TabIndex = 24;
             this.clientGroupBox.TabStop = false;
             this.clientGroupBox.Text = "Client:";
@@ -114,128 +114,128 @@
             // modelesComboBox
             // 
             this.modelesComboBox.FormattingEnabled = true;
-            this.modelesComboBox.Location = new System.Drawing.Point(189, 308);
-            this.modelesComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.modelesComboBox.Location = new System.Drawing.Point(260, 462);
+            this.modelesComboBox.Margin = new System.Windows.Forms.Padding(6);
             this.modelesComboBox.Name = "modelesComboBox";
-            this.modelesComboBox.Size = new System.Drawing.Size(323, 24);
+            this.modelesComboBox.Size = new System.Drawing.Size(443, 32);
             this.modelesComboBox.TabIndex = 30;
             // 
-            // modeleVoitureLabel
+            // modeleMangaLabel
             // 
-            this.modeleVoitureLabel.AutoSize = true;
-            this.modeleVoitureLabel.Location = new System.Drawing.Point(24, 311);
-            this.modeleVoitureLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.modeleVoitureLabel.Name = "modeleVoitureLabel";
-            this.modeleVoitureLabel.Size = new System.Drawing.Size(118, 16);
-            this.modeleVoitureLabel.TabIndex = 29;
-            this.modeleVoitureLabel.Text = "Modèle de voiture:";
+            this.modeleMangaLabel.AutoSize = true;
+            this.modeleMangaLabel.Location = new System.Drawing.Point(33, 466);
+            this.modeleMangaLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.modeleMangaLabel.Name = "modeleMangaLabel";
+            this.modeleMangaLabel.Size = new System.Drawing.Size(176, 25);
+            this.modeleMangaLabel.TabIndex = 29;
+            this.modeleMangaLabel.Text = "Modèle de Manga:";
             // 
             // typesComboBox
             // 
             this.typesComboBox.FormattingEnabled = true;
-            this.typesComboBox.Location = new System.Drawing.Point(191, 263);
-            this.typesComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.typesComboBox.Location = new System.Drawing.Point(263, 394);
+            this.typesComboBox.Margin = new System.Windows.Forms.Padding(6);
             this.typesComboBox.Name = "typesComboBox";
-            this.typesComboBox.Size = new System.Drawing.Size(323, 24);
+            this.typesComboBox.Size = new System.Drawing.Size(443, 32);
             this.typesComboBox.TabIndex = 28;
             // 
-            // typesVoituresLabel
+            // typesMangasLabel
             // 
-            this.typesVoituresLabel.AutoSize = true;
-            this.typesVoituresLabel.Location = new System.Drawing.Point(25, 267);
-            this.typesVoituresLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.typesVoituresLabel.Name = "typesVoituresLabel";
-            this.typesVoituresLabel.Size = new System.Drawing.Size(104, 16);
-            this.typesVoituresLabel.TabIndex = 27;
-            this.typesVoituresLabel.Text = "Type de voiture:";
+            this.typesMangasLabel.AutoSize = true;
+            this.typesMangasLabel.Location = new System.Drawing.Point(34, 400);
+            this.typesMangasLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.typesMangasLabel.Name = "typesMangasLabel";
+            this.typesMangasLabel.Size = new System.Drawing.Size(156, 25);
+            this.typesMangasLabel.TabIndex = 27;
+            this.typesMangasLabel.Text = "Type de Manga:";
             // 
             // telephoneMaskedTextBox
             // 
-            this.telephoneMaskedTextBox.Location = new System.Drawing.Point(189, 218);
-            this.telephoneMaskedTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.telephoneMaskedTextBox.Location = new System.Drawing.Point(260, 327);
+            this.telephoneMaskedTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.telephoneMaskedTextBox.Name = "telephoneMaskedTextBox";
-            this.telephoneMaskedTextBox.Size = new System.Drawing.Size(324, 22);
+            this.telephoneMaskedTextBox.Size = new System.Drawing.Size(444, 29);
             this.telephoneMaskedTextBox.TabIndex = 26;
             // 
             // telephoneLabel
             // 
             this.telephoneLabel.AutoSize = true;
-            this.telephoneLabel.Location = new System.Drawing.Point(25, 222);
-            this.telephoneLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.telephoneLabel.Location = new System.Drawing.Point(34, 333);
+            this.telephoneLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.telephoneLabel.Name = "telephoneLabel";
-            this.telephoneLabel.Size = new System.Drawing.Size(76, 16);
+            this.telephoneLabel.Size = new System.Drawing.Size(112, 25);
             this.telephoneLabel.TabIndex = 25;
             this.telephoneLabel.Text = "Téléphone:";
             // 
             // codePostalMaskedTextBox
             // 
-            this.codePostalMaskedTextBox.Location = new System.Drawing.Point(189, 172);
-            this.codePostalMaskedTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.codePostalMaskedTextBox.Location = new System.Drawing.Point(260, 258);
+            this.codePostalMaskedTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.codePostalMaskedTextBox.Name = "codePostalMaskedTextBox";
-            this.codePostalMaskedTextBox.Size = new System.Drawing.Size(324, 22);
+            this.codePostalMaskedTextBox.Size = new System.Drawing.Size(444, 29);
             this.codePostalMaskedTextBox.TabIndex = 24;
             // 
             // adresseMaskedTextBox
             // 
-            this.adresseMaskedTextBox.Location = new System.Drawing.Point(191, 127);
-            this.adresseMaskedTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.adresseMaskedTextBox.Location = new System.Drawing.Point(263, 190);
+            this.adresseMaskedTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.adresseMaskedTextBox.Name = "adresseMaskedTextBox";
-            this.adresseMaskedTextBox.Size = new System.Drawing.Size(324, 22);
+            this.adresseMaskedTextBox.Size = new System.Drawing.Size(444, 29);
             this.adresseMaskedTextBox.TabIndex = 23;
             // 
             // prenomMaskedTextBox
             // 
-            this.prenomMaskedTextBox.Location = new System.Drawing.Point(191, 81);
-            this.prenomMaskedTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.prenomMaskedTextBox.Location = new System.Drawing.Point(263, 122);
+            this.prenomMaskedTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.prenomMaskedTextBox.Name = "prenomMaskedTextBox";
-            this.prenomMaskedTextBox.Size = new System.Drawing.Size(324, 22);
+            this.prenomMaskedTextBox.Size = new System.Drawing.Size(444, 29);
             this.prenomMaskedTextBox.TabIndex = 22;
             // 
             // nomMaskedTextBox
             // 
-            this.nomMaskedTextBox.Location = new System.Drawing.Point(189, 36);
-            this.nomMaskedTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.nomMaskedTextBox.Location = new System.Drawing.Point(260, 54);
+            this.nomMaskedTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.nomMaskedTextBox.Name = "nomMaskedTextBox";
-            this.nomMaskedTextBox.Size = new System.Drawing.Size(324, 22);
+            this.nomMaskedTextBox.Size = new System.Drawing.Size(444, 29);
             this.nomMaskedTextBox.TabIndex = 21;
             // 
             // codePostalLabel
             // 
             this.codePostalLabel.AutoSize = true;
-            this.codePostalLabel.Location = new System.Drawing.Point(25, 176);
-            this.codePostalLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.codePostalLabel.Location = new System.Drawing.Point(34, 264);
+            this.codePostalLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.codePostalLabel.Name = "codePostalLabel";
-            this.codePostalLabel.Size = new System.Drawing.Size(83, 16);
+            this.codePostalLabel.Size = new System.Drawing.Size(123, 25);
             this.codePostalLabel.TabIndex = 20;
             this.codePostalLabel.Text = "Code postal:";
             // 
             // adresseLabel
             // 
             this.adresseLabel.AutoSize = true;
-            this.adresseLabel.Location = new System.Drawing.Point(25, 130);
-            this.adresseLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.adresseLabel.Location = new System.Drawing.Point(34, 195);
+            this.adresseLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.adresseLabel.Name = "adresseLabel";
-            this.adresseLabel.Size = new System.Drawing.Size(61, 16);
+            this.adresseLabel.Size = new System.Drawing.Size(91, 25);
             this.adresseLabel.TabIndex = 19;
             this.adresseLabel.Text = "Adresse:";
             // 
             // prenomLabel
             // 
             this.prenomLabel.AutoSize = true;
-            this.prenomLabel.Location = new System.Drawing.Point(25, 85);
-            this.prenomLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.prenomLabel.Location = new System.Drawing.Point(34, 128);
+            this.prenomLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.prenomLabel.Name = "prenomLabel";
-            this.prenomLabel.Size = new System.Drawing.Size(57, 16);
+            this.prenomLabel.Size = new System.Drawing.Size(86, 25);
             this.prenomLabel.TabIndex = 18;
             this.prenomLabel.Text = "Prénom:";
             // 
             // nomLabel
             // 
             this.nomLabel.AutoSize = true;
-            this.nomLabel.Location = new System.Drawing.Point(25, 39);
-            this.nomLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.nomLabel.Location = new System.Drawing.Point(34, 58);
+            this.nomLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.nomLabel.Name = "nomLabel";
-            this.nomLabel.Size = new System.Drawing.Size(39, 16);
+            this.nomLabel.Size = new System.Drawing.Size(59, 25);
             this.nomLabel.TabIndex = 17;
             this.nomLabel.Text = "Nom:";
             // 
@@ -250,30 +250,30 @@
             this.transactionGroupBox.Controls.Add(this.prixLLabel);
             this.transactionGroupBox.Controls.Add(this.genresLabel);
             this.transactionGroupBox.Controls.Add(this.titresLabel);
-            this.transactionGroupBox.Location = new System.Drawing.Point(609, 326);
-            this.transactionGroupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.transactionGroupBox.Location = new System.Drawing.Point(837, 489);
+            this.transactionGroupBox.Margin = new System.Windows.Forms.Padding(6);
             this.transactionGroupBox.Name = "transactionGroupBox";
-            this.transactionGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.transactionGroupBox.Size = new System.Drawing.Size(491, 242);
+            this.transactionGroupBox.Padding = new System.Windows.Forms.Padding(6);
+            this.transactionGroupBox.Size = new System.Drawing.Size(675, 363);
             this.transactionGroupBox.TabIndex = 25;
             this.transactionGroupBox.TabStop = false;
             this.transactionGroupBox.Text = "Transaction:";
             // 
             // dateLivraisonDateTimePicker
             // 
-            this.dateLivraisonDateTimePicker.Location = new System.Drawing.Point(188, 39);
-            this.dateLivraisonDateTimePicker.Margin = new System.Windows.Forms.Padding(4);
+            this.dateLivraisonDateTimePicker.Location = new System.Drawing.Point(258, 58);
+            this.dateLivraisonDateTimePicker.Margin = new System.Windows.Forms.Padding(6);
             this.dateLivraisonDateTimePicker.Name = "dateLivraisonDateTimePicker";
-            this.dateLivraisonDateTimePicker.Size = new System.Drawing.Size(265, 22);
+            this.dateLivraisonDateTimePicker.Size = new System.Drawing.Size(363, 29);
             this.dateLivraisonDateTimePicker.TabIndex = 27;
             // 
             // dateLivraisonLabel
             // 
             this.dateLivraisonLabel.AutoSize = true;
-            this.dateLivraisonLabel.Location = new System.Drawing.Point(36, 39);
-            this.dateLivraisonLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.dateLivraisonLabel.Location = new System.Drawing.Point(50, 58);
+            this.dateLivraisonLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.dateLivraisonLabel.Name = "dateLivraisonLabel";
-            this.dateLivraisonLabel.Size = new System.Drawing.Size(111, 16);
+            this.dateLivraisonLabel.Size = new System.Drawing.Size(162, 25);
             this.dateLivraisonLabel.TabIndex = 26;
             this.dateLivraisonLabel.Text = "Date de livraison:";
             // 
@@ -281,10 +281,10 @@
             // 
             this.prixLabel.BackColor = System.Drawing.Color.White;
             this.prixLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.prixLabel.Location = new System.Drawing.Point(188, 176);
-            this.prixLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.prixLabel.Location = new System.Drawing.Point(258, 264);
+            this.prixLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.prixLabel.Name = "prixLabel";
-            this.prixLabel.Size = new System.Drawing.Size(266, 28);
+            this.prixLabel.Size = new System.Drawing.Size(365, 41);
             this.prixLabel.TabIndex = 25;
             this.prixLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -293,10 +293,10 @@
             this.genreComboBox.BackColor = System.Drawing.SystemColors.Control;
             this.genreComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.genreComboBox.FormattingEnabled = true;
-            this.genreComboBox.Location = new System.Drawing.Point(188, 130);
-            this.genreComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.genreComboBox.Location = new System.Drawing.Point(258, 195);
+            this.genreComboBox.Margin = new System.Windows.Forms.Padding(6);
             this.genreComboBox.Name = "genreComboBox";
-            this.genreComboBox.Size = new System.Drawing.Size(265, 24);
+            this.genreComboBox.Size = new System.Drawing.Size(363, 32);
             this.genreComboBox.TabIndex = 24;
             this.genreComboBox.SelectedIndexChanged += new System.EventHandler(this.TransactionComboBox_SelectedIndexChanged);
             // 
@@ -305,52 +305,54 @@
             this.titreComboBox.BackColor = System.Drawing.SystemColors.Control;
             this.titreComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.titreComboBox.FormattingEnabled = true;
-            this.titreComboBox.Location = new System.Drawing.Point(188, 85);
-            this.titreComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.titreComboBox.Location = new System.Drawing.Point(258, 128);
+            this.titreComboBox.Margin = new System.Windows.Forms.Padding(6);
             this.titreComboBox.Name = "titreComboBox";
-            this.titreComboBox.Size = new System.Drawing.Size(265, 24);
+            this.titreComboBox.Size = new System.Drawing.Size(363, 32);
             this.titreComboBox.TabIndex = 23;
             this.titreComboBox.SelectedIndexChanged += new System.EventHandler(this.TransactionComboBox_SelectedIndexChanged);
             // 
             // prixLLabel
             // 
             this.prixLLabel.AutoSize = true;
-            this.prixLLabel.Location = new System.Drawing.Point(36, 182);
-            this.prixLLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.prixLLabel.Location = new System.Drawing.Point(50, 273);
+            this.prixLLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.prixLLabel.Name = "prixLLabel";
-            this.prixLLabel.Size = new System.Drawing.Size(32, 16);
+            this.prixLLabel.Size = new System.Drawing.Size(51, 25);
             this.prixLLabel.TabIndex = 22;
             this.prixLLabel.Text = "Prix:";
             // 
             // genresLabel
             // 
             this.genresLabel.AutoSize = true;
-            this.genresLabel.Location = new System.Drawing.Point(36, 134);
-            this.genresLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.genresLabel.Location = new System.Drawing.Point(50, 201);
+            this.genresLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.genresLabel.Name = "genresLabel";
-            this.genresLabel.Size = new System.Drawing.Size(54, 16);
+            this.genresLabel.Size = new System.Drawing.Size(82, 25);
             this.genresLabel.TabIndex = 21;
             this.genresLabel.Text = "Genres:";
             // 
             // titresLabel
             // 
             this.titresLabel.AutoSize = true;
-            this.titresLabel.Location = new System.Drawing.Point(36, 89);
-            this.titresLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.titresLabel.Location = new System.Drawing.Point(50, 134);
+            this.titresLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.titresLabel.Name = "titresLabel";
-            this.titresLabel.Size = new System.Drawing.Size(37, 16);
+            this.titresLabel.Size = new System.Drawing.Size(57, 25);
             this.titresLabel.TabIndex = 20;
             this.titresLabel.Text = "Titre:";
             // 
             // transactionsMenuStrip
             // 
+            this.transactionsMenuStrip.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.transactionsMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.transactionsMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fichierToolStripMenuItem,
             this.aideToolStripMenuItem});
             this.transactionsMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.transactionsMenuStrip.Name = "transactionsMenuStrip";
-            this.transactionsMenuStrip.Size = new System.Drawing.Size(1149, 28);
+            this.transactionsMenuStrip.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
+            this.transactionsMenuStrip.Size = new System.Drawing.Size(1580, 40);
             this.transactionsMenuStrip.TabIndex = 26;
             this.transactionsMenuStrip.Text = "menuStrip1";
             // 
@@ -360,22 +362,22 @@
             this.enregistrerToolStripMenuItem,
             this.quitterToolStripMenuItem});
             this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
-            this.fichierToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
+            this.fichierToolStripMenuItem.Size = new System.Drawing.Size(91, 34);
             this.fichierToolStripMenuItem.Text = "&Fichier";
             // 
             // enregistrerToolStripMenuItem
             // 
             this.enregistrerToolStripMenuItem.Name = "enregistrerToolStripMenuItem";
             this.enregistrerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.E)));
-            this.enregistrerToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
+            this.enregistrerToolStripMenuItem.Size = new System.Drawing.Size(314, 40);
             this.enregistrerToolStripMenuItem.Text = "&Enregistrer";
             // 
             // quitterToolStripMenuItem
             // 
             this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-            this.quitterToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Shift)
+            this.quitterToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.Q)));
-            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(314, 40);
             this.quitterToolStripMenuItem.Text = "&Quitter";
             // 
             // aideToolStripMenuItem
@@ -383,14 +385,15 @@
             this.aideToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aproposDeToolStripMenuItem});
             this.aideToolStripMenuItem.Name = "aideToolStripMenuItem";
-            this.aideToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
+            this.aideToolStripMenuItem.Size = new System.Drawing.Size(73, 34);
             this.aideToolStripMenuItem.Text = "&Aide";
             // 
             // aproposDeToolStripMenuItem
             // 
             this.aproposDeToolStripMenuItem.Name = "aproposDeToolStripMenuItem";
-            this.aproposDeToolStripMenuItem.Size = new System.Drawing.Size(183, 26);
+            this.aproposDeToolStripMenuItem.Size = new System.Drawing.Size(259, 40);
             this.aproposDeToolStripMenuItem.Text = "À &propos de...";
+            this.aproposDeToolStripMenuItem.Click += new System.EventHandler(this.aproposDeToolStripMenuItem_Click);
             // 
             // enregistrerButton
             // 
@@ -398,10 +401,10 @@
             this.enregistrerButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.enregistrerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.enregistrerButton.ForeColor = System.Drawing.Color.White;
-            this.enregistrerButton.Location = new System.Drawing.Point(609, 593);
-            this.enregistrerButton.Margin = new System.Windows.Forms.Padding(4);
+            this.enregistrerButton.Location = new System.Drawing.Point(837, 890);
+            this.enregistrerButton.Margin = new System.Windows.Forms.Padding(6);
             this.enregistrerButton.Name = "enregistrerButton";
-            this.enregistrerButton.Size = new System.Drawing.Size(191, 65);
+            this.enregistrerButton.Size = new System.Drawing.Size(263, 98);
             this.enregistrerButton.TabIndex = 28;
             this.enregistrerButton.Text = "&Enregistrer";
             this.enregistrerButton.UseVisualStyleBackColor = false;
@@ -413,10 +416,10 @@
             this.quitterButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.quitterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quitterButton.ForeColor = System.Drawing.Color.White;
-            this.quitterButton.Location = new System.Drawing.Point(914, 593);
-            this.quitterButton.Margin = new System.Windows.Forms.Padding(4);
+            this.quitterButton.Location = new System.Drawing.Point(1257, 890);
+            this.quitterButton.Margin = new System.Windows.Forms.Padding(6);
             this.quitterButton.Name = "quitterButton";
-            this.quitterButton.Size = new System.Drawing.Size(186, 65);
+            this.quitterButton.Size = new System.Drawing.Size(256, 98);
             this.quitterButton.TabIndex = 29;
             this.quitterButton.Text = "&Quitter";
             this.quitterButton.UseVisualStyleBackColor = false;
@@ -429,19 +432,19 @@
             this.logoPanel.Controls.Add(this.logoGauchePictureBox);
             this.logoPanel.Controls.Add(this.mangasPictureBox);
             this.logoPanel.Controls.Add(this.logoDroitPictureBox);
-            this.logoPanel.Location = new System.Drawing.Point(36, 44);
-            this.logoPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.logoPanel.Location = new System.Drawing.Point(50, 66);
+            this.logoPanel.Margin = new System.Windows.Forms.Padding(6);
             this.logoPanel.Name = "logoPanel";
-            this.logoPanel.Size = new System.Drawing.Size(1064, 274);
+            this.logoPanel.Size = new System.Drawing.Size(1463, 411);
             this.logoPanel.TabIndex = 30;
             // 
             // logoGauchePictureBox
             // 
             this.logoGauchePictureBox.Image = global::VentesMangas.Properties.Resources.mangas;
-            this.logoGauchePictureBox.Location = new System.Drawing.Point(29, 114);
-            this.logoGauchePictureBox.Margin = new System.Windows.Forms.Padding(4);
+            this.logoGauchePictureBox.Location = new System.Drawing.Point(40, 171);
+            this.logoGauchePictureBox.Margin = new System.Windows.Forms.Padding(6);
             this.logoGauchePictureBox.Name = "logoGauchePictureBox";
-            this.logoGauchePictureBox.Size = new System.Drawing.Size(245, 114);
+            this.logoGauchePictureBox.Size = new System.Drawing.Size(337, 171);
             this.logoGauchePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.logoGauchePictureBox.TabIndex = 0;
             this.logoGauchePictureBox.TabStop = false;
@@ -449,10 +452,10 @@
             // mangasPictureBox
             // 
             this.mangasPictureBox.Image = global::VentesMangas.Properties.Resources.mangatitre;
-            this.mangasPictureBox.Location = new System.Drawing.Point(308, 95);
-            this.mangasPictureBox.Margin = new System.Windows.Forms.Padding(4);
+            this.mangasPictureBox.Location = new System.Drawing.Point(424, 142);
+            this.mangasPictureBox.Margin = new System.Windows.Forms.Padding(6);
             this.mangasPictureBox.Name = "mangasPictureBox";
-            this.mangasPictureBox.Size = new System.Drawing.Size(477, 165);
+            this.mangasPictureBox.Size = new System.Drawing.Size(656, 248);
             this.mangasPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.mangasPictureBox.TabIndex = 1;
             this.mangasPictureBox.TabStop = false;
@@ -461,22 +464,22 @@
             // 
             this.logoDroitPictureBox.BackColor = System.Drawing.Color.LightGray;
             this.logoDroitPictureBox.Image = global::VentesMangas.Properties.Resources.mangas;
-            this.logoDroitPictureBox.Location = new System.Drawing.Point(813, 114);
-            this.logoDroitPictureBox.Margin = new System.Windows.Forms.Padding(4);
+            this.logoDroitPictureBox.Location = new System.Drawing.Point(1118, 171);
+            this.logoDroitPictureBox.Margin = new System.Windows.Forms.Padding(6);
             this.logoDroitPictureBox.Name = "logoDroitPictureBox";
-            this.logoDroitPictureBox.Size = new System.Drawing.Size(235, 114);
+            this.logoDroitPictureBox.Size = new System.Drawing.Size(323, 171);
             this.logoDroitPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.logoDroitPictureBox.TabIndex = 27;
             this.logoDroitPictureBox.TabStop = false;
             // 
             // VentesMangasForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.quitterButton;
-            this.ClientSize = new System.Drawing.Size(1149, 716);
+            this.ClientSize = new System.Drawing.Size(1580, 1074);
             this.Controls.Add(this.logoPanel);
             this.Controls.Add(this.quitterButton);
             this.Controls.Add(this.enregistrerButton);
@@ -484,7 +487,7 @@
             this.Controls.Add(this.transactionGroupBox);
             this.Controls.Add(this.clientGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "VentesMangasForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ventes de mangas";
@@ -512,7 +515,7 @@
         private System.Windows.Forms.Label titreLabel;
         private System.Windows.Forms.GroupBox clientGroupBox;
         private System.Windows.Forms.ComboBox typesComboBox;
-        private System.Windows.Forms.Label typesVoituresLabel;
+        private System.Windows.Forms.Label typesMangasLabel;
         private System.Windows.Forms.MaskedTextBox telephoneMaskedTextBox;
         private System.Windows.Forms.Label telephoneLabel;
         private System.Windows.Forms.MaskedTextBox codePostalMaskedTextBox;
@@ -543,7 +546,7 @@
         private System.Windows.Forms.Button quitterButton;
         private System.Windows.Forms.Panel logoPanel;
         private System.Windows.Forms.ComboBox modelesComboBox;
-        private System.Windows.Forms.Label modeleVoitureLabel;
+        private System.Windows.Forms.Label modeleMangaLabel;
     }
 }
 

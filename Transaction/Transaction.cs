@@ -6,19 +6,17 @@
     Solution:       VentesMangas.sln
     Projet:         VentesMangas.csproj
 
-    Namespace:      {VentesMangas}
+    Namespace:      TransactionNS
 
-    Classe:         VentesMangasClassGenerale.cs
+    Classe:        Transaction.cs
   
     But:           Gestion des clients, des ventes et des achats de mangas.
 */
 
+using System;
+
 namespace TransactionNS
 {
-    /// <summary>
-    /// Objet metier: Classe de transaction
-    /// </summary>
-    /// <remarks>Tous droits réservés: Dylane Tano Inc. 2025</remarks>
 
     public class Transaction
     {
@@ -97,13 +95,44 @@ namespace TransactionNS
         /// <param name="titre">Indice (entier) pour le titre du manga</param>
         /// <param name="genre">Indice (entier) pour le genre des pneus</param>
         /// <returns>Le prix associé au titre et au genre du manga.</returns>
+        /// 
+
         public decimal GetPrix(int titre, int genre)
         {
-            if (titre < tPrix.GetLowerBound(0) || titre > tPrix.GetUpperBound(0) || genre < tPrix.GetLowerBound(1) || genre > tPrix.GetUpperBound(1))
-            {
-                return -1; 
-            }
+
+            
+
+            if (titre < 0 || titre >= tTitres.Length)
+                throw new ArgumentOutOfRangeException(nameof(titre), "L'indice de marque est hors des limites.");
+            if (genre < 0 || titre >= tGenres.Length)
+                throw new ArgumentOutOfRangeException(nameof(genre), "L'indice de diamètre est hors des limites.");
+
             return tPrix[titre, genre];
+
+        }
+
+        /// <summary>
+        /// Obtenir le prix basé sur le nom de la marque et le diamètre.
+        /// </summary>
+        /// <param name="marque">Nom de la marque.</param>
+        /// <param name="diametre">Diamètre du pneu.</param>
+        /// <returns>Le prix sous forme de Decimal.</returns>
+        /// <exception cref="ArgumentException">Si la marque ou le diamètre est invalide.</exception>
+        /// 
+
+
+
+        public decimal GetPrix(string titre, string genre)
+        {
+            int titreIndex = Array.IndexOf(tTitres, titre);
+            int genreIndex = Array.IndexOf(tGenres, genre);
+
+            if (titreIndex == -1)
+                throw new ArgumentException("La marque spécifiée est invalide.", nameof(titre));
+            if (genreIndex == -1)
+                throw new ArgumentException("Le diamètre spécifié est invalide.", nameof(genre));
+
+            return tPrix[titreIndex, genreIndex];
         }
         #endregion
     }

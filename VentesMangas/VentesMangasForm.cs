@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-/*
+﻿/*
     Programmeur:    Dylane Tano
     Date:           Novembre 2020
   
@@ -11,16 +8,20 @@ using System.ComponentModel;
 
     Namespace:      {VentesMangas}
 
-    Classe:         VentesMangasClassGenerale.cs
+    Classe:         VentesMangasForm.cs
   
     But:           Gestion des clients, des ventes et des achats de mangas.
 */
-
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
-
+using TypesNS;
 using TransactionNS;
 using g = VentesMangas.VentesMangasGeneraleClass;
 using ce = VentesMangas.VentesMangasGeneraleClass.Erreurs;
+using System.Drawing;
+using static TypesNS.Type;
 
 namespace VentesMangas
 {
@@ -31,9 +32,8 @@ namespace VentesMangas
     public partial class VentesMangasForm : Form
     {
         #region Déclaration
-        private string[] tTitresMangas;
-        private string[] tGenres;
-        private decimal[] tPrix;
+        private Transaction oTrans;
+        private TypesNS.Type oTypes;
         #endregion
 
         #region Constructeur
@@ -56,22 +56,25 @@ namespace VentesMangas
         {
             try
             {
-                Transaction oTrans = new Transaction();
-
+                oTrans = new Transaction();
+                oTypes = new TypesNS.Type();
                 g.InitMessagesErreurs();
+                venteMangaAboutBox venteMangeaAbout = new venteMangaAboutBox();
 
-                titreComboBox.SelectedIndexChanged -= TransactionComboBox_SelectedIndexChanged;
-                genreComboBox.SelectedIndexChanged -= TransactionComboBox_SelectedIndexChanged;
 
                 titreComboBox.Items.AddRange(oTrans.GetTitres());
                 titreComboBox.SelectedIndex = 0;
                 genreComboBox.Items.AddRange(oTrans.GetGenres());
                 genreComboBox.SelectedIndex = 0;
 
-                titreComboBox.SelectedIndexChanged += TransactionComboBox_SelectedIndexChanged;
-                genreComboBox.SelectedIndexChanged += TransactionComboBox_SelectedIndexChanged;
-
-                prixLabel.Text = oTrans.GetPrix(titreComboBox.SelectedIndex, genreComboBox.SelectedIndex).ToString("c2");
+                typesComboBox.Items.AddRange(oTypes.GetTypesModeles(CodesTypes.Types));
+                modelesComboBox.Items.AddRange(oTypes.GetTypesModeles(CodesTypes.Modeles));
+                typesComboBox.SelectedIndex = 0;
+                modelesComboBox.SelectedIndex = 0;
+            }
+            catch (ArgumentOutOfRangeException )
+            {
+                MessageBox.Show(g.tMessagesErreursStr[(int)ce.ECEPrixIntrouvable], "Prix", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception)
             {
@@ -92,15 +95,24 @@ namespace VentesMangas
         {
             try
             {
-                Transaction oTrans = new Transaction();
+                 oTrans = new Transaction();
+               
+
+                
                 if (titreComboBox.SelectedIndex != -1 && genreComboBox.SelectedIndex != -1)
-                    prixLabel.Text = oTrans.GetPrix(titreComboBox.SelectedIndex, genreComboBox.SelectedIndex).ToString("c2");
-                else
-                    MessageBox.Show(g.tMessagesErreursStr[(int)ce.ECEPrixIntrouvable], "Prix", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                   // prixLabel.Text = oTrans.GetPrix(titreComboBox.SelectedIndex, genreComboBox.SelectedIndex).ToString("c2");
+                prixLabel.Text = oTrans.GetPrix(titreComboBox.SelectedItem.ToString(), genreComboBox.SelectedItem.ToString()).ToString("c2");
+
             }
-            catch (ArgumentOutOfRangeException)
+            catch (ArgumentOutOfRangeException )
             {
-                MessageBox.Show(g.tMessagesErreursStr[(int)ce.ECEPrixIntrouvable], "Prix", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               
+               MessageBox.Show(g.tMessagesErreursStr[(int)ce.ECEPrixIntrouvable], "Prix", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch(ArgumentException)
+            {
+                MessageBox.Show(g.tMessagesErreursStr[(int)ce.CEErreurArgumentException], "Erreur de sélection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
             }
             catch (Exception)
             {
@@ -108,6 +120,20 @@ namespace VentesMangas
             }
         }
         #endregion
+
+        #region boite de dialogue
+        private void aproposDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            venteMangaAboutBox venteMangeaAbout = new venteMangaAboutBox();
+            if (venteMangeaAbout != null)
+            {
+               venteMangeaAbout.ShowDialog(this);
+            }
+        }
+        #endregion
+
+
     }
 }
  

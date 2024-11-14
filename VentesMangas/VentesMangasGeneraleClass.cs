@@ -27,6 +27,8 @@ namespace VentesMangas
         {
             CEErreurIndeterminee,
             ECEPrixIntrouvable,
+            CEErreurArgumentException,
+            CEErreurSurCodesTypes,
         }
         #endregion
 
@@ -37,8 +39,11 @@ namespace VentesMangas
         #region Initialisation
         public static void InitMessagesErreurs()
         {
+            
+
+            tMessagesErreursStr[(int)ce.CEErreurArgumentException] = "Paramètre incorrect pour le titre ou le genre.";
             tMessagesErreursStr[(int)ce.CEErreurIndeterminee] = "Erreur indéterminée. Contactez la personne ressource.";
-            tMessagesErreursStr[(int)ce.ECEPrixIntrouvable] = "Le prix du pneu ne peut être déterminé avec les indices fournie.";
+            tMessagesErreursStr[(int)ce.ECEPrixIntrouvable] = "Le prix du manga  ne peut être déterminé avec les indices fournie.";
         }
         #endregion
     }
