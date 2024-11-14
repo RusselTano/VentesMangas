@@ -13,6 +13,9 @@
     But:           Gestion des clients, des ventes et des achats de mangas.
 */
 
+using System;
+using System.Windows.Forms;
+
 namespace TransactionNS
 {
     /// <summary>
@@ -26,6 +29,99 @@ namespace TransactionNS
         private string[] tTitres;
         private string[] tGenres;
         private decimal[,] tPrix;
+        #endregion
+
+        #region Champs prives
+        private int idInt;
+        private string nomStr;
+        private string prenomStr;
+        private string adresseStr;
+        private string codePostalStr;
+        private string telephoneStr;
+        string typeMangaStr;
+        string modeleMangaStr;
+        private DateTime dateLivraisonDateTime;
+        string titreStr;
+        string genreStr;
+        private decimal prixDecimal;
+        #endregion
+
+        #region Proprietes publiques
+        public int IdInt { get => idInt; set => idInt = value; }
+        public string NomStr { get => nomStr; set => nomStr = value; }
+        public string PrenomStr { get => prenomStr; set => prenomStr = value; }
+        public string AdresseStr { get => adresseStr; set => adresseStr = value; }
+        public string CodePostalStr { get => codePostalStr; set => codePostalStr = value; }
+        public string TelephoneStr { get => telephoneStr; set => telephoneStr = value; }
+        public string TypeMangaStr { get => typeMangaStr; set => typeMangaStr = value; }
+        public string ModeleMangaStr { get => modeleMangaStr; set => modeleMangaStr = value; }
+        public DateTime DateLivraisonDateTime { get => dateLivraisonDateTime; set => dateLivraisonDateTime = value; }
+        public string TitreStr { get => titreStr; set => titreStr = value; }
+        public string GenresStr { get => genreStr; set => genreStr = value; }
+        public decimal PrixDecimal { get => prixDecimal; set => prixDecimal = value; }
+        #endregion
+
+        #region Constructeur avec parametres
+        public Transaction(int idPrinc, string nomPrinc, string prenomPrinc, string adressePrinc, string codePostalPrinc, string telephonePrinc, string typeMangaPrinc, string modelMangaPrinc, DateTime dateLivraisonPrinc, string titrePrinc,string genrePrinc,  decimal prixPrinc)
+        {
+            idInt = idPrinc;
+            nomStr = nomPrinc;
+            prenomStr = prenomPrinc;
+            adresseStr = adressePrinc;
+            codePostalStr = codePostalPrinc;
+            telephoneStr = telephonePrinc;
+            typeMangaStr = typeMangaPrinc;
+            modeleMangaStr = modelMangaPrinc;   
+            dateLivraisonDateTime = dateLivraisonPrinc;
+            titreStr = titrePrinc;
+            genreStr = genrePrinc;
+            prixDecimal = prixPrinc;
+        }
+        #endregion
+
+        #region Méthode Enregistrer() sans paramètre
+        public void Enregistrer()
+        {
+            string message = $"Client:\n" +
+                             $"Nom: {nomStr}\n" +
+                             $"Prénom: {prenomStr}\n" +
+                             $"Adresse: {adresseStr}\n" +
+                             $"Code postal: {codePostalStr}\n" +
+                             $"Téléphone: {telephoneStr}\n" +
+                             $"Type de manga: {typeMangaStr}\n" +
+                             $"Modèle de manga: {modeleMangaStr}\n\n" +
+                             $"Transaction:\n" +
+                             $"Date de livraison: {dateLivraisonDateTime}\n" +
+                             $"Titre: {titreStr}\n" +
+                             $"Genre: {genreStr}\n" +
+                             $"Prix: ${prixDecimal}";
+            Console.WriteLine(message);
+
+            MessageBox.Show(message, "Transaction enregistrée", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        #endregion
+
+        #region Méthode Enregistrer() avec paramètres
+        public void Enregistrer(int idPrinc, string nomPrinc, string prenomPrinc, string adressePrinc, string codePostalPrinc, string telephonePrinc, string typeMangaPrinc, string modelMangaPrinc, DateTime dateLivraisonPrinc, string titrePrinc,string genrePrinc,  decimal prixPrinc)
+        {
+            idInt = idPrinc;
+            nomStr = nomPrinc;
+            prenomStr = prenomPrinc;
+            adresseStr = adressePrinc;
+            codePostalStr = codePostalPrinc;
+            telephoneStr = telephonePrinc;
+            typeMangaStr = typeMangaPrinc;
+            modeleMangaStr = modelMangaPrinc;
+            dateLivraisonDateTime = dateLivraisonPrinc;
+            titreStr = titrePrinc;
+            genreStr = genrePrinc;
+            prixDecimal = prixPrinc;
+
+            Enregistrer();
+        }
+        #endregion
+
+        #region
         #endregion
 
         #region Initialisation des tableaux
@@ -48,7 +144,7 @@ namespace TransactionNS
         /// </summary>
         private void InitPrix()
         {
-            tPrix = new decimal[5,5]
+            tPrix = new decimal[5, 5]
             {
                 { 8.99m, 7.99m, 10.99m, 8.50m, 9.49m },
                 { 6.99m, 5.99m, 8.99m, 7.50m, 8.49m },
@@ -101,7 +197,7 @@ namespace TransactionNS
         {
             if (titre < tPrix.GetLowerBound(0) || titre > tPrix.GetUpperBound(0) || genre < tPrix.GetLowerBound(1) || genre > tPrix.GetUpperBound(1))
             {
-                return -1; 
+                return -1;
             }
             return tPrix[titre, genre];
         }
