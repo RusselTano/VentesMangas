@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{73B4F8A7-C677-4D23-BABC-347C1D6C0E4B}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>VentesMangas</RootNamespace>
     <AssemblyName>VentesMangas</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>

@@ -1,6 +1,6 @@
 ﻿/*
-    Programmeur:    Dylane Tano
-    Date:           Novembre 2020
+    Programmeurs:   Andreas, Cdric, Dylane, Manuela
+    Date:           Novembre 2024
   
     Assembly:       VentesMangas.exe
     Solution:       VentesMangas.sln
@@ -41,8 +41,6 @@ namespace VentesMangas
         #region Initialisation
         public static void InitMessagesErreurs()
         {
-            
-
             tMessagesErreursStr[(int)ce.CEErreurArgumentException] = "Paramètre incorrect pour le titre ou le genre.";
             tMessagesErreursStr[(int)ce.CEErreurIndeterminee] = "Erreur indéterminée. Contactez la personne ressource.";
             tMessagesErreursStr[(int)ce.ECEErreurPrix] = "Le prix du pneu ne peut être déterminé avec les indices fournie.";

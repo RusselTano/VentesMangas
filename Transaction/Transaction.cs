@@ -1,12 +1,12 @@
 ﻿/*
-    Programmeur:    Dylane Tano
-    Date:           Novembre 2020
+    Programmeurs:   Andreas, Cdric, Dylane, Manuela
+    Date:           Novembre 2024
   
     Assembly:       VentesMangas.exe
     Solution:       VentesMangas.sln
     Projet:         VentesMangas.csproj
 
-    Namespace:      TransactionNS
+    Namespace:      {TransactionNS}
 
     Classe:        Transaction.cs
   
@@ -14,14 +14,10 @@
 */
 
 using System;
-<<<<<<< HEAD
-=======
 using System.Windows.Forms;
->>>>>>> PhaseC
 
 namespace TransactionNS
 {
-
     public class Transaction
     {
         #region Declaration des tableaux
@@ -56,71 +52,24 @@ namespace TransactionNS
         public string ModeleMangaStr { get => modeleMangaStr; set => modeleMangaStr = value; }
         public DateTime DateLivraisonDateTime { get => dateLivraisonDateTime; set => dateLivraisonDateTime = value; }
         public string TitreStr { get => titreStr; set => titreStr = value; }
-        public string GenresStr { get => genreStr; set => genreStr = value; }
+        public string GenreStr { get => genreStr; set => genreStr = value; }
         public decimal PrixDecimal { get => prixDecimal; set => prixDecimal = value; }
         #endregion
 
+        #region Constructeur
+        public Transaction()
+        {
+            InitGenres();
+            InitTitres();
+            InitPrix();
+        }
+        #endregion
+
         #region Constructeur avec parametres
-        public Transaction(int idPrinc, string nomPrinc, string prenomPrinc, string adressePrinc, string codePostalPrinc, string telephonePrinc, string typeMangaPrinc, string modelMangaPrinc, DateTime dateLivraisonPrinc, string titrePrinc,string genrePrinc,  decimal prixPrinc)
+        public Transaction(int idPrinc, string nomPrinc, string prenomPrinc, string adressePrinc, string codePostalPrinc, string telephonePrinc, string typeMangaPrinc, string modelMangaPrinc, DateTime dateLivraisonPrinc, string titrePrinc, string genrePrinc, decimal prixPrinc)
         {
-            idInt = idPrinc;
-            nomStr = nomPrinc;
-            prenomStr = prenomPrinc;
-            adresseStr = adressePrinc;
-            codePostalStr = codePostalPrinc;
-            telephoneStr = telephonePrinc;
-            typeMangaStr = typeMangaPrinc;
-            modeleMangaStr = modelMangaPrinc;   
-            dateLivraisonDateTime = dateLivraisonPrinc;
-            titreStr = titrePrinc;
-            genreStr = genrePrinc;
-            prixDecimal = prixPrinc;
+            SetProperties(idPrinc, nomPrinc, prenomPrinc, adressePrinc, codePostalPrinc, telephonePrinc, typeMangaPrinc, modelMangaPrinc, dateLivraisonPrinc, titrePrinc, genrePrinc, prixPrinc);
         }
-        #endregion
-
-        #region Méthode Enregistrer() sans paramètre
-        public void Enregistrer()
-        {
-            string message = $"Client:\n" +
-                             $"Nom: {nomStr}\n" +
-                             $"Prénom: {prenomStr}\n" +
-                             $"Adresse: {adresseStr}\n" +
-                             $"Code postal: {codePostalStr}\n" +
-                             $"Téléphone: {telephoneStr}\n" +
-                             $"Type de manga: {typeMangaStr}\n" +
-                             $"Modèle de manga: {modeleMangaStr}\n\n" +
-                             $"Transaction:\n" +
-                             $"Date de livraison: {dateLivraisonDateTime}\n" +
-                             $"Titre: {titreStr}\n" +
-                             $"Genre: {genreStr}\n" +
-                             $"Prix: ${prixDecimal}";
-            Console.WriteLine(message);
-
-            MessageBox.Show(message, "Transaction enregistrée", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-        #endregion
-
-        #region Méthode Enregistrer() avec paramètres
-        public void Enregistrer(int idPrinc, string nomPrinc, string prenomPrinc, string adressePrinc, string codePostalPrinc, string telephonePrinc, string typeMangaPrinc, string modelMangaPrinc, DateTime dateLivraisonPrinc, string titrePrinc,string genrePrinc,  decimal prixPrinc)
-        {
-            idInt = idPrinc;
-            nomStr = nomPrinc;
-            prenomStr = prenomPrinc;
-            adresseStr = adressePrinc;
-            codePostalStr = codePostalPrinc;
-            telephoneStr = telephonePrinc;
-            typeMangaStr = typeMangaPrinc;
-            modeleMangaStr = modelMangaPrinc;
-            dateLivraisonDateTime = dateLivraisonPrinc;
-            titreStr = titrePrinc;
-            genreStr = genrePrinc;
-            prixDecimal = prixPrinc;
-
-            Enregistrer();
-        }
-        #endregion
-
-        #region
         #endregion
 
         #region Initialisation des tableaux
@@ -154,15 +103,6 @@ namespace TransactionNS
         }
         #endregion
 
-        #region Constructeur
-        public Transaction()
-        {
-            InitGenres();
-            InitTitres();
-            InitPrix();
-        }
-        #endregion
-
         #region Titres de mangas
         /// <summary>
         /// methode pour retourner les titres
@@ -193,26 +133,17 @@ namespace TransactionNS
         /// <param name="genre">Indice (entier) pour le genre des pneus</param>
         /// <returns>Le prix associé au titre et au genre du manga.</returns>
         /// 
-
         public decimal GetPrix(int titre, int genre)
         {
-<<<<<<< HEAD
-
-            
-
             if (titre < 0 || titre >= tTitres.Length)
                 throw new ArgumentOutOfRangeException(nameof(titre), "L'indice de marque est hors des limites.");
             if (genre < 0 || titre >= tGenres.Length)
                 throw new ArgumentOutOfRangeException(nameof(genre), "L'indice de diamètre est hors des limites.");
 
-=======
             if (titre < tPrix.GetLowerBound(0) || titre > tPrix.GetUpperBound(0) || genre < tPrix.GetLowerBound(1) || genre > tPrix.GetUpperBound(1))
-            {
                 return -1;
-            }
->>>>>>> PhaseC
-            return tPrix[titre, genre];
 
+            return tPrix[titre, genre];
         }
 
         /// <summary>
@@ -223,9 +154,6 @@ namespace TransactionNS
         /// <returns>Le prix sous forme de Decimal.</returns>
         /// <exception cref="ArgumentException">Si la marque ou le diamètre est invalide.</exception>
         /// 
-
-
-
         public decimal GetPrix(string titre, string genre)
         {
             int titreIndex = Array.IndexOf(tTitres, titre);
@@ -237,6 +165,55 @@ namespace TransactionNS
                 throw new ArgumentException("Le diamètre spécifié est invalide.", nameof(genre));
 
             return tPrix[titreIndex, genreIndex];
+        }
+        #endregion
+
+        #region Méthode Enregistrer() sans paramètre
+        public void Enregistrer()
+        {
+            string message = $"Client:\n" +
+                             $"Id:{idInt}\n" +
+                             $"Nom: {nomStr}\n" +
+                             $"Prénom: {prenomStr}\n" +
+                             $"Adresse: {adresseStr}\n" +
+                             $"Code postal: {codePostalStr}\n" +
+                             $"Téléphone: {telephoneStr}\n" +
+                             $"Type de manga: {typeMangaStr}\n" +
+                             $"Modèle de manga: {modeleMangaStr}\n\n" +
+                             $"Transaction:\n" +
+                             $"Date de livraison: {dateLivraisonDateTime.ToString("yyyy-MMM-dd h:mm tt")}\n" +
+                             $"Titre: {titreStr}\n" +
+                             $"Genre: {genreStr}\n" +
+                             $"Prix: {prixDecimal.ToString("C2")}\n\n";
+            Console.WriteLine(message);
+
+            MessageBox.Show(message, "Transaction enregistrée", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        #endregion
+
+        #region Méthode Enregistrer() avec paramètres
+        public void Enregistrer(int idPrinc, string nomPrinc, string prenomPrinc, string adressePrinc, string codePostalPrinc, string telephonePrinc, string typeMangaPrinc, string modelMangaPrinc, DateTime dateLivraisonPrinc, string titrePrinc, string genrePrinc, decimal prixPrinc)
+        {
+            SetProperties(idPrinc, nomPrinc, prenomPrinc, adressePrinc, codePostalPrinc, telephonePrinc, typeMangaPrinc, modelMangaPrinc, dateLivraisonPrinc, titrePrinc, genrePrinc, prixPrinc);
+            Enregistrer();
+        }
+        #endregion
+
+        #region Methodes Privees
+        private void SetProperties(int idPrinc, string nomPrinc, string prenomPrinc, string adressePrinc, string codePostalPrinc, string telephonePrinc, string typeMangaPrinc, string modelMangaPrinc, DateTime dateLivraisonPrinc, string titrePrinc, string genrePrinc, decimal prixPrinc)
+        {
+            idInt = idPrinc;
+            nomStr = nomPrinc;
+            prenomStr = prenomPrinc;
+            adresseStr = adressePrinc;
+            codePostalStr = codePostalPrinc;
+            telephoneStr = telephonePrinc;
+            typeMangaStr = typeMangaPrinc;
+            modeleMangaStr = modelMangaPrinc;
+            dateLivraisonDateTime = dateLivraisonPrinc;
+            titreStr = titrePrinc;
+            genreStr = genrePrinc;
+            prixDecimal = prixPrinc;
         }
         #endregion
     }
