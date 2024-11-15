@@ -50,15 +50,10 @@
       <Compartment Name="Methods" Collapsed="true" />
       <Compartment Name="Events" Collapsed="true" />
     </Compartments>
-    <NestedTypes>
-      <Class Name="System.Windows.Forms.Form.ControlCollection" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-    </NestedTypes>
     <TypeIdentifier />
   </Class>
   <Class Name="TransactionNS.Transaction">
-    <Position X="6" Y="1" Width="1.5" />
+    <Position X="6.25" Y="1" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Font Name="Segoe UI" Size="9" />

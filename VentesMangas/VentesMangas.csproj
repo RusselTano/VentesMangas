@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="venteMangaAboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="venteMangaAboutBox.Designer.cs">
+      <DependentUpon>venteMangaAboutBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="VentesMangasForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +75,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="venteMangaAboutBox.resx">
+      <DependentUpon>venteMangaAboutBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VentesMangasForm.resx">
       <DependentUpon>VentesMangasForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -96,6 +105,10 @@
     <ProjectReference Include="..\Transaction\Transaction.csproj">
       <Project>{007b7cb0-91f2-4351-a32d-ce6f74c4eb60}</Project>
       <Name>Transaction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Types\Types.csproj">
+      <Project>{4ec3328c-85d7-4901-8f1b-90f2d89b80ee}</Project>
+      <Name>Types</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
