@@ -111,6 +111,7 @@ namespace VentesMangas
         #region Enregistrer
         private void enregistrerButton_Click(object sender, EventArgs e)
         {
+
             Enregistrer_Click();
         }
         #endregion
@@ -148,6 +149,9 @@ namespace VentesMangas
         /// </summary>
         public void Enregistrer_Click()
         {
+            try
+            {
+
             oTrans.IdInt = 1;
             oTrans.NomStr = nomMaskedTextBox.Text;
             oTrans.PrenomStr = prenomMaskedTextBox.Text;
@@ -160,8 +164,13 @@ namespace VentesMangas
             oTrans.TitreStr = titreComboBox.SelectedItem?.ToString();
             oTrans.GenreStr = genreComboBox.SelectedItem?.ToString();
             oTrans.PrixDecimal = Decimal.Parse(prixLabel.Text.Replace("$", "").Trim());
-            prixLLabel.Text = $"Date Paiement : {oTrans.DatePaiement.ToLongDateString()}";
+            paiementLabel.Text = oTrans.DatePaiement.ToLongDateString();
             oTrans.Enregistrer();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         #endregion
 
@@ -214,8 +223,8 @@ namespace VentesMangas
             adresseMaskedTextBox.Text = "555 Duke street";
             codePostalMaskedTextBox.Text = "E2A 2K9";
             telephoneMaskedTextBox.Text = "506-555-5555";
-            dateLivraisonDateTimePicker.Format = DateTimePickerFormat.Custom;
-            dateLivraisonDateTimePicker.CustomFormat = "yyyy-MMM-dd";
+            //dateLivraisonDateTimePicker.Format = DateTimePickerFormat.Custom;
+            //dateLivraisonDateTimePicker.CustomFormat = "yyyy-MMM-dd";
             dateLivraisonDateTimePicker.Value = DateTime.Now;
             prixLabel.Text = oTrans.GetPrix(titreComboBox.SelectedIndex, genreComboBox.SelectedIndex).ToString("c2");
         }
@@ -228,7 +237,7 @@ namespace VentesMangas
         }
         #endregion
 
-        #region validation date de ivraison
+        #region validation date de livraison
         private void dateLivraisonLabel_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (DateTime.TryParse(dateLivraisonLabel.Text, out DateTime date))
@@ -242,9 +251,5 @@ namespace VentesMangas
         }
         #endregion
 
-        private void enregistrerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

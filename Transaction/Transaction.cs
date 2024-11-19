@@ -122,7 +122,7 @@ namespace TransactionNS
 
                     if (value!=string.Empty)
                     {
-                        nomStr = value;
+                        prenomStr = value;
                     }
                     else
                     {
@@ -138,7 +138,7 @@ namespace TransactionNS
         }
         public string AdresseStr
         {
-            get { return nomStr; }
+            get { return adresseStr; }
             set
             {
                 if (value != null)
@@ -147,7 +147,7 @@ namespace TransactionNS
 
                     if (value != string.Empty)
                     {
-                        nomStr = value;
+                        adresseStr = value;
                     }
                     else
                     {
@@ -162,7 +162,7 @@ namespace TransactionNS
             }
         }
         public string CodePostalStr {
-            get { return nomStr; }
+            get { return codePostalStr; }
             set
             {
                 if (value != null)
@@ -171,7 +171,7 @@ namespace TransactionNS
 
                     if (value != string.Empty)
                     {
-                        nomStr = value;
+                        codePostalStr = value;
                     }
                     else
                     {
@@ -244,7 +244,7 @@ namespace TransactionNS
 
                     if (value != string.Empty)
                     {
-                        nomStr = value;
+                        modeleMangaStr = value;
                     }
                     else
                     {
@@ -308,7 +308,7 @@ namespace TransactionNS
             {
                 if (value != null && !string.IsNullOrWhiteSpace(value))
                 {
-                    if (Array.IndexOf(tTitres, value.Trim()) != -1)
+                    if (Array.IndexOf(tGenres, value.Trim()) != -1)
                     {
                         genreStr = value.Trim();
                     }
@@ -321,6 +321,7 @@ namespace TransactionNS
                 {
                     throw new ArgumentNullException(tMessagesErreurs[(int)CodesErreurs.GenreInvalide]);
                 }
+
             }
         }
         public decimal PrixDecimal {
@@ -345,7 +346,7 @@ namespace TransactionNS
                             {
                                 throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.PrixInvalide]);
                             }
-                        }
+                       }
                         else
                         {
                             throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.ErreurIndeterminee]);
@@ -490,9 +491,10 @@ namespace TransactionNS
                              $"Type de manga: {typeMangaStr}\n" +
                              $"Modèle de manga: {modeleMangaStr}\n\n" +
                              $"Transaction:\n" +
-                             $"Date de livraison: {dateLivraisonDateTime.ToString("yyyy-MMM-dd h:mm tt")}\n" +
+                             $"Date de livraison: {dateLivraisonDateTime.ToString()}\n" +
                              $"Titre: {titreStr}\n" +
                              $"Genre: {genreStr}\n" +
+                             $"Date de paiement: {datePaiement.ToString()}\n" +
                              $"Prix: {prixDecimal.ToString("C2")}\n\n";
             Console.WriteLine(message);
 
