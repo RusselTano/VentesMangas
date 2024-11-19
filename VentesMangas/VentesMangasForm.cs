@@ -90,6 +90,7 @@ namespace VentesMangas
                 MessageBox.Show(g.tMessagesErreursStr[(int)ce.CEErreurIndeterminee], "Prix", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         #endregion
 
         #region Boite de dialogue
@@ -110,6 +111,7 @@ namespace VentesMangas
         #region Enregistrer
         private void enregistrerButton_Click(object sender, EventArgs e)
         {
+
             Enregistrer_Click();
         }
         #endregion
@@ -128,11 +130,11 @@ namespace VentesMangas
         //        adresseMaskedTextBox.Text,
         //        codePostalMaskedTextBox.Text,
         //        telephoneMaskedTextBox.Text,
-        //        typesComboBox.SelectedItem?.ToString(),
-        //        modelesComboBox.SelectedItem?.ToString(),
+        //        typesComboBox.SelectedItem.ToString(),
+        //        modelesComboBox.SelectedItem.ToString(),
         //        DateTime.Parse(dateLivraisonDateTimePicker.Value.ToString()),
-        //        titreComboBox.SelectedItem?.ToString(),
-        //        genreComboBox.SelectedItem?.ToString(),
+        //        titreComboBox.SelectedItem.ToString(),
+        //        genreComboBox.SelectedItem.ToString(),
         //        Decimal.Parse(prixLabel.Text.Replace("$", "").Trim())
         //    );
 
@@ -147,20 +149,27 @@ namespace VentesMangas
         /// </summary>
         public void Enregistrer_Click()
         {
-            oTrans.IdInt = 1;
-            oTrans.NomStr = nomMaskedTextBox.Text;
-            oTrans.PrenomStr = prenomMaskedTextBox.Text;
-            oTrans.AdresseStr = adresseMaskedTextBox.Text;
-            oTrans.CodePostalStr = codePostalMaskedTextBox.Text;
-            oTrans.TelephoneStr = telephoneMaskedTextBox.Text;
-            oTrans.TypeMangaStr = typesComboBox.SelectedItem?.ToString();
-            oTrans.ModeleMangaStr = modelesComboBox.SelectedItem?.ToString();
-            oTrans.DateLivraisonDateTime = DateTime.Parse(dateLivraisonDateTimePicker.Value.ToString());
-            oTrans.TitreStr = titreComboBox.SelectedItem?.ToString();
-            oTrans.GenreStr = genreComboBox.SelectedItem?.ToString();
-            oTrans.PrixDecimal = Decimal.Parse(prixLabel.Text.Replace("$", "").Trim());
+            try
+            {
+                oTrans.NomStr = nomMaskedTextBox.Text;
+                oTrans.PrenomStr = prenomMaskedTextBox.Text;
+                oTrans.AdresseStr = adresseMaskedTextBox.Text;
+                oTrans.CodePostalStr = codePostalMaskedTextBox.Text;
+                oTrans.TelephoneStr = telephoneMaskedTextBox.Text;
+                oTrans.TypeMangaStr = typesComboBox.SelectedItem.ToString();
+                oTrans.ModeleMangaStr = modelesComboBox.SelectedItem.ToString();
+                oTrans.DateLivraisonDateTime = DateTime.Parse(dateLivraisonDateTimePicker.Value.ToString());
+                oTrans.TitreStr = titreComboBox.SelectedItem.ToString();
+                oTrans.GenreStr = genreComboBox.SelectedItem.ToString();
+                oTrans.PrixDecimal = Decimal.Parse(prixLabel.Text.Replace("$", "").Trim());
+                paiementLabel.Text = oTrans.DatePaiement.ToLongDateString();
+                oTrans.Enregistrer();
 
-            oTrans.Enregistrer();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         #endregion
 
@@ -173,17 +182,17 @@ namespace VentesMangas
         //{
         //    Transaction oTrans = new Transaction();
         //    oTrans.Enregistrer(
-        //        1,
+        //        oTrans.IdInt,
         //        nomMaskedTextBox.Text,
         //        prenomMaskedTextBox.Text,
         //        adresseMaskedTextBox.Text,
         //        codePostalMaskedTextBox.Text,
         //        telephoneMaskedTextBox.Text,
-        //        typesComboBox.SelectedItem?.ToString(),
-        //        modelesComboBox.SelectedItem?.ToString(),
-        //        DateTime.Parse(dateLivraisonDateTimePicker.Value.ToString("yyyy, MMM dd"),
-        //        titreComboBox.SelectedItem?.ToString(),
-        //        genreComboBox.SelectedItem?.ToString(),
+        //        typesComboBox.SelectedItem.ToString(),
+        //        modelesComboBox.SelectedItem.ToString(),
+        //        DateTime.Parse(dateLivraisonDateTimePicker.Value.ToString()),
+        //        titreComboBox.SelectedItem.ToString(),
+        //        genreComboBox.SelectedItem.ToString(),
         //        Decimal.Parse(prixLabel.Text.Replace("$", "").Trim())
         //    );
         //}
@@ -213,8 +222,6 @@ namespace VentesMangas
             adresseMaskedTextBox.Text = "555 Duke street";
             codePostalMaskedTextBox.Text = "E2A 2K9";
             telephoneMaskedTextBox.Text = "506-555-5555";
-            dateLivraisonDateTimePicker.Format = DateTimePickerFormat.Custom;
-            dateLivraisonDateTimePicker.CustomFormat = "yyyy-MMM-dd";
             dateLivraisonDateTimePicker.Value = DateTime.Now;
             prixLabel.Text = oTrans.GetPrix(titreComboBox.SelectedIndex, genreComboBox.SelectedIndex).ToString("c2");
         }
@@ -224,6 +231,20 @@ namespace VentesMangas
         private void quitterButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        #endregion
+
+        #region validation date de livraison
+        private void dateLivraisonLabel_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (DateTime.TryParse(dateLivraisonLabel.Text, out DateTime date))
+            {
+                dateLivraisonLabel.Text = date.ToLongDateString();
+            }
+            else
+            {
+                dateLivraisonLabel.Text = DateTime.Now.ToLongDateString();
+            }
         }
         #endregion
     }
