@@ -36,24 +36,332 @@ namespace TransactionNS
         string typeMangaStr;
         string modeleMangaStr;
         private DateTime dateLivraisonDateTime;
+        private DateTime datePaiement;
         string titreStr;
         string genreStr;
         private decimal prixDecimal;
         #endregion
 
+        #region enumeration et tableaux
+
+        // Énumération des erreurs
+        private enum CodesErreurs
+        {
+            NomObligatoire,
+            PrenomObligatoire,
+            AdresseObligatoire,
+            CodePostalObligatoire,
+            CodePostalInvalide,
+            TypeMangaObligatoire,
+            TelephoneObligatoire,
+            ModeleObligatoire,
+            PrixInvalide,
+           TitreInvalide,
+           GenreInvalide,
+            DateLivraisonInvalide,
+            ErreurIndeterminee
+        }
+
+        // Tableau de messages d'erreurs
+        private string[] tMessagesErreurs = new string[15];
+
+        #endregion
+
+        #region initialisations messages d 'erreurs
+        private void InitMessagesErreurs()
+        {
+            tMessagesErreurs[(int)CodesErreurs.NomObligatoire] = "Le nom est obligatoire.";
+            tMessagesErreurs[(int)CodesErreurs.PrenomObligatoire] = "Le prenom est obligatoire.";
+            tMessagesErreurs[(int)CodesErreurs.AdresseObligatoire] = "L'adresse est obligatoire.";
+            tMessagesErreurs[(int)CodesErreurs.ModeleObligatoire] = "Le modele est obligatoire.";
+            tMessagesErreurs[(int)CodesErreurs.TelephoneObligatoire] = "Le telephone est obligatoire.";
+            tMessagesErreurs[(int)CodesErreurs.TypeMangaObligatoire] = "Le type de manga est obligatoire.";
+            tMessagesErreurs[(int)CodesErreurs.CodePostalObligatoire] = "Le codePostal est obligatoire.";
+            tMessagesErreurs[(int)CodesErreurs.PrixInvalide] = "Le prix est invalide.";
+            tMessagesErreurs[(int)CodesErreurs.TitreInvalide] = "Le titre est invalide.";
+            tMessagesErreurs[(int)CodesErreurs.GenreInvalide] = "Le genre est invalide.";
+            tMessagesErreurs[(int)CodesErreurs.DateLivraisonInvalide] = "La date de livraison est invalide.";
+            tMessagesErreurs[(int)CodesErreurs.ErreurIndeterminee] = "Une erreur indéterminée est survenue.";
+        }
+        #endregion
+
         #region Proprietes publiques
         public int IdInt { get => idInt; set => idInt = value; }
-        public string NomStr { get => nomStr; set => nomStr = value; }
-        public string PrenomStr { get => prenomStr; set => prenomStr = value; }
-        public string AdresseStr { get => adresseStr; set => adresseStr = value; }
-        public string CodePostalStr { get => codePostalStr; set => codePostalStr = value; }
-        public string TelephoneStr { get => telephoneStr; set => telephoneStr = value; }
-        public string TypeMangaStr { get => typeMangaStr; set => typeMangaStr = value; }
-        public string ModeleMangaStr { get => modeleMangaStr; set => modeleMangaStr = value; }
-        public DateTime DateLivraisonDateTime { get => dateLivraisonDateTime; set => dateLivraisonDateTime = value; }
-        public string TitreStr { get => titreStr; set => titreStr = value; }
-        public string GenreStr { get => genreStr; set => genreStr = value; }
-        public decimal PrixDecimal { get => prixDecimal; set => prixDecimal = value; }
+        public string NomStr
+        {
+            get { return nomStr; }
+            set
+            {
+                if (value != null )
+                {
+                    value = value.Trim();
+
+                    if (value != string.Empty)
+                    {
+                        nomStr = value;
+                    }
+                    else
+                    {
+                        throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.NomObligatoire]);
+                    }
+
+                }
+                else
+                {
+                    throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.NomObligatoire]);
+                }
+            }
+        }
+        public string PrenomStr {
+            get { return prenomStr; }
+            set
+            {
+                if (value != null)
+                {
+                    value = value.Trim();
+
+                    if (value!=string.Empty)
+                    {
+                        nomStr = value;
+                    }
+                    else
+                    {
+                        throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.PrenomObligatoire]);
+                    }
+
+                }
+                else
+                {
+                    throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.PrenomObligatoire]);
+                }
+            }
+        }
+        public string AdresseStr
+        {
+            get { return nomStr; }
+            set
+            {
+                if (value != null)
+                {
+                    value = value.Trim();
+
+                    if (value != string.Empty)
+                    {
+                        nomStr = value;
+                    }
+                    else
+                    {
+                        throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.AdresseObligatoire]);
+                    }
+
+                }
+                else
+                {
+                    throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.AdresseObligatoire]);
+                }
+            }
+        }
+        public string CodePostalStr {
+            get { return nomStr; }
+            set
+            {
+                if (value != null)
+                {
+                    value = value.Trim();
+
+                    if (value != string.Empty)
+                    {
+                        nomStr = value;
+                    }
+                    else
+                    {
+                        throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.NomObligatoire]);
+                    }
+
+                }
+                else
+                {
+                    throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.NomObligatoire]);
+                }
+            }
+        }
+        public string TelephoneStr {
+            get { return telephoneStr; }
+            set
+            {
+                if (value != null)
+                {
+                    value = value.Trim();
+
+                    if (value != string.Empty)
+                    {
+                        telephoneStr = value;
+                    }
+                    else
+                    {
+                        throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.TelephoneObligatoire]);
+                    }
+
+                }
+                else
+                {
+                    throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.TelephoneObligatoire]);
+                }
+            }
+        }
+        public string TypeMangaStr {
+            get { return typeMangaStr; }
+            set
+            {
+                if (value != null)
+                {
+                    value = value.Trim();
+
+                    if (value != string.Empty)
+                    {
+                       typeMangaStr = value;
+                    }
+                    else
+                    {
+                        throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.TypeMangaObligatoire]);
+                    }
+
+                }
+                else
+                {
+                    throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.TypeMangaObligatoire]);
+                }
+            }
+        }
+        public string ModeleMangaStr
+        {
+            get { return modeleMangaStr; }
+            set
+            {
+                if (value != null)
+                {
+                    value = value.Trim();
+
+                    if (value != string.Empty)
+                    {
+                        nomStr = value;
+                    }
+                    else
+                    {
+                        throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.ModeleObligatoire]);
+                    }
+
+                }
+                else
+                {
+                    throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.ModeleObligatoire]);
+                }
+            }
+        }
+        public DateTime DateLivraisonDateTime
+        {
+            get => dateLivraisonDateTime;
+            set
+            {
+                {
+                    if (value >= DateTime.Now.AddDays(-15) && value <= DateTime.Now.AddDays(15))
+                    {
+                        dateLivraisonDateTime = value;
+                        datePaiement = dateLivraisonDateTime.AddDays(30);
+                    }
+                    else
+                    {
+                        throw new ArgumentOutOfRangeException(tMessagesErreurs[(int)CodesErreurs.DateLivraisonInvalide]);
+                    }
+                }
+
+            }
+        }
+
+        public DateTime DatePaiement => datePaiement; 
+    
+    
+        public string TitreStr {
+            get { return titreStr; }
+            set
+            {
+                if (value != null &&  (value != string.Empty))
+                {
+                    if (Array.IndexOf(tTitres, value.Trim()) != -1)
+                    {
+                        titreStr = value.Trim();
+                    }
+                    else
+                    {
+                        throw new ArgumentOutOfRangeException(tMessagesErreurs[(int)CodesErreurs.TitreInvalide]);
+                    }
+                }
+                else
+                {
+                    throw new ArgumentNullException(tMessagesErreurs[(int)CodesErreurs.TitreInvalide]);
+                }
+            }
+        }
+        public string GenreStr {
+            get { return genreStr; }
+            set
+            {
+                if (value != null && !string.IsNullOrWhiteSpace(value))
+                {
+                    if (Array.IndexOf(tTitres, value.Trim()) != -1)
+                    {
+                        genreStr = value.Trim();
+                    }
+                    else
+                    {
+                        throw new ArgumentOutOfRangeException(tMessagesErreurs[(int)CodesErreurs.GenreInvalide]);
+                    }
+                }
+                else
+                {
+                    throw new ArgumentNullException(tMessagesErreurs[(int)CodesErreurs.GenreInvalide]);
+                }
+            }
+        }
+        public decimal PrixDecimal {
+            get { return prixDecimal; }
+            set
+            {
+                if (value > 0)
+                {
+                    if (!string.IsNullOrEmpty(titreStr) && !string.IsNullOrEmpty(genreStr))
+                    {
+                        // Exemple : Vérification des indices dans les tableaux
+                        int indicetitre = Array.IndexOf(tTitres, TitreStr);
+                        int indicegenre = Array.IndexOf(tGenres, GenreStr);
+
+                        if (indicetitre != -1 && indicegenre != -1)
+                        {
+                            if (tPrix[indicetitre, indicegenre] == value)
+                            {
+                                prixDecimal = value;
+                            }
+                            else
+                            {
+                                throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.PrixInvalide]);
+                            }
+                        }
+                        else
+                        {
+                            throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.ErreurIndeterminee]);
+                        }
+                    }
+                    else
+                    {
+                        throw new ArgumentNullException(tMessagesErreurs[(int)CodesErreurs.ErreurIndeterminee]);
+                    }
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException(tMessagesErreurs[(int)CodesErreurs.PrixInvalide]);
+                }
+            }
+        }
         #endregion
 
         #region Constructeur
@@ -62,13 +370,14 @@ namespace TransactionNS
             InitGenres();
             InitTitres();
             InitPrix();
+            InitMessagesErreurs();
         }
         #endregion
 
         #region Constructeur avec parametres
-        public Transaction(int idPrinc, string nomPrinc, string prenomPrinc, string adressePrinc, string codePostalPrinc, string telephonePrinc, string typeMangaPrinc, string modelMangaPrinc, DateTime dateLivraisonPrinc, string titrePrinc, string genrePrinc, decimal prixPrinc)
+        public Transaction(int idPrinc, string nomPrinc, string prenomPrinc, string adressePrinc, string codePostalPrinc, string telephonePrinc, string typeMangaPrinc, string modelMangaPrinc, DateTime dateLivraisonPrinc, DateTime datePaiementPrinc, string titrePrinc, string genrePrinc, decimal prixPrinc)
         {
-            SetProperties(idPrinc, nomPrinc, prenomPrinc, adressePrinc, codePostalPrinc, telephonePrinc, typeMangaPrinc, modelMangaPrinc, dateLivraisonPrinc, titrePrinc, genrePrinc, prixPrinc);
+            SetProperties(idPrinc, nomPrinc, prenomPrinc, adressePrinc, codePostalPrinc, telephonePrinc, typeMangaPrinc, modelMangaPrinc, dateLivraisonPrinc, datePaiementPrinc, titrePrinc, genrePrinc, prixPrinc);
         }
         #endregion
 
@@ -192,15 +501,15 @@ namespace TransactionNS
         #endregion
 
         #region Méthode Enregistrer() avec paramètres
-        public void Enregistrer(int idPrinc, string nomPrinc, string prenomPrinc, string adressePrinc, string codePostalPrinc, string telephonePrinc, string typeMangaPrinc, string modelMangaPrinc, DateTime dateLivraisonPrinc, string titrePrinc, string genrePrinc, decimal prixPrinc)
+        public void Enregistrer(int idPrinc, string nomPrinc, string prenomPrinc, string adressePrinc, string codePostalPrinc, string telephonePrinc, string typeMangaPrinc, string modelMangaPrinc, DateTime dateLivraisonPrinc, DateTime datePaiementPrinc, string titrePrinc, string genrePrinc, decimal prixPrinc)
         {
-            SetProperties(idPrinc, nomPrinc, prenomPrinc, adressePrinc, codePostalPrinc, telephonePrinc, typeMangaPrinc, modelMangaPrinc, dateLivraisonPrinc, titrePrinc, genrePrinc, prixPrinc);
+            SetProperties(idPrinc, nomPrinc, prenomPrinc, adressePrinc, codePostalPrinc, telephonePrinc, typeMangaPrinc, modelMangaPrinc, dateLivraisonPrinc, datePaiementPrinc, titrePrinc, genrePrinc, prixPrinc);
             Enregistrer();
         }
         #endregion
 
         #region Methodes Privees
-        private void SetProperties(int idPrinc, string nomPrinc, string prenomPrinc, string adressePrinc, string codePostalPrinc, string telephonePrinc, string typeMangaPrinc, string modelMangaPrinc, DateTime dateLivraisonPrinc, string titrePrinc, string genrePrinc, decimal prixPrinc)
+        private void SetProperties(int idPrinc, string nomPrinc, string prenomPrinc, string adressePrinc, string codePostalPrinc, string telephonePrinc, string typeMangaPrinc, string modelMangaPrinc, DateTime dateLivraisonPrinc, DateTime datePaiementPrinc, string titrePrinc, string genrePrinc, decimal prixPrinc)
         {
             idInt = idPrinc;
             nomStr = nomPrinc;
@@ -214,6 +523,7 @@ namespace TransactionNS
             titreStr = titrePrinc;
             genreStr = genrePrinc;
             prixDecimal = prixPrinc;
+            datePaiement=datePaiementPrinc;
         }
         #endregion
     }

@@ -90,6 +90,7 @@ namespace VentesMangas
                 MessageBox.Show(g.tMessagesErreursStr[(int)ce.CEErreurIndeterminee], "Prix", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         #endregion
 
         #region Boite de dialogue
@@ -159,7 +160,7 @@ namespace VentesMangas
             oTrans.TitreStr = titreComboBox.SelectedItem?.ToString();
             oTrans.GenreStr = genreComboBox.SelectedItem?.ToString();
             oTrans.PrixDecimal = Decimal.Parse(prixLabel.Text.Replace("$", "").Trim());
-
+            prixLLabel.Text = $"Date Paiement : {oTrans.DatePaiement.ToLongDateString()}";
             oTrans.Enregistrer();
         }
         #endregion
@@ -226,5 +227,24 @@ namespace VentesMangas
             this.Close();
         }
         #endregion
+
+        #region validation date de ivraison
+        private void dateLivraisonLabel_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (DateTime.TryParse(dateLivraisonLabel.Text, out DateTime date))
+            {
+                dateLivraisonLabel.Text = date.ToLongDateString();
+            }
+            else
+            {
+                dateLivraisonLabel.Text = DateTime.Now.ToLongDateString();
+            }
+        }
+        #endregion
+
+        private void enregistrerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
