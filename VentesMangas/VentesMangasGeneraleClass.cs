@@ -31,6 +31,12 @@ namespace VentesMangas
             ECEErreurPrix,
             ECEErreurTitre,
             ECEErreurGenre,
+            ECEErreurCodePostalFormat,
+            ECEErreurCodePostalVide,
+            ECEErreurCodePostalNull,
+            ECEErreurTelephoneFormat,
+            ECEErreurTelephoneVide,
+            ECEErreurTelephoneNull,
         }
         #endregion
 
@@ -46,6 +52,12 @@ namespace VentesMangas
             tMessagesErreursStr[(int)ce.ECEErreurPrix] = "Le prix du pneu ne peut être déterminé avec les indices fournie.";
             tMessagesErreursStr[(int)ce.ECEErreurTitre] = "Le titre du manga ne peut être déterminé avec les indices fournie.";
             tMessagesErreursStr[(int)ce.ECEErreurGenre] = "Le genre du manga ne peut être déterminé avec les indices fournie.";
+            tMessagesErreursStr[(int)ce.ECEErreurCodePostalFormat] = "Code postal format invalide";
+            tMessagesErreursStr[(int)ce.ECEErreurCodePostalVide] = "Code postal vide";
+            tMessagesErreursStr[(int)ce.ECEErreurCodePostalNull] = "Code postal null";
+            tMessagesErreursStr[(int)ce.ECEErreurTelephoneFormat] = "Téléphone format invalide";
+            tMessagesErreursStr[(int)ce.ECEErreurTelephoneVide] = "Téléphone vide";
+            tMessagesErreursStr[(int)ce.ECEErreurTelephoneNull] = "Téléphone null";
         }
         #endregion
     }

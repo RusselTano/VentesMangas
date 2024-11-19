@@ -45,6 +45,8 @@
             this.prenomLabel = new System.Windows.Forms.Label();
             this.nomLabel = new System.Windows.Forms.Label();
             this.transactionGroupBox = new System.Windows.Forms.GroupBox();
+            this.paiementLabel = new System.Windows.Forms.Label();
+            this.paiementLLabel = new System.Windows.Forms.Label();
             this.dateLivraisonDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.dateLivraisonLabel = new System.Windows.Forms.Label();
             this.prixLabel = new System.Windows.Forms.Label();
@@ -65,8 +67,6 @@
             this.logoGauchePictureBox = new System.Windows.Forms.PictureBox();
             this.mangasPictureBox = new System.Windows.Forms.PictureBox();
             this.logoDroitPictureBox = new System.Windows.Forms.PictureBox();
-            this.paiementLLabel = new System.Windows.Forms.Label();
-            this.paiementLabel = new System.Windows.Forms.Label();
             this.clientGroupBox.SuspendLayout();
             this.transactionGroupBox.SuspendLayout();
             this.transactionsMenuStrip.SuspendLayout();
@@ -267,6 +267,27 @@
             this.transactionGroupBox.TabStop = false;
             this.transactionGroupBox.Text = "Transaction:";
             // 
+            // paiementLabel
+            // 
+            this.paiementLabel.BackColor = System.Drawing.Color.White;
+            this.paiementLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.paiementLabel.Location = new System.Drawing.Point(187, 215);
+            this.paiementLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.paiementLabel.Name = "paiementLabel";
+            this.paiementLabel.Size = new System.Drawing.Size(266, 28);
+            this.paiementLabel.TabIndex = 40;
+            this.paiementLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // paiementLLabel
+            // 
+            this.paiementLLabel.AutoSize = true;
+            this.paiementLLabel.Location = new System.Drawing.Point(36, 221);
+            this.paiementLLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.paiementLLabel.Name = "paiementLLabel";
+            this.paiementLLabel.Size = new System.Drawing.Size(99, 16);
+            this.paiementLLabel.TabIndex = 39;
+            this.paiementLLabel.Text = "Paiement du le:";
+            // 
             // dateLivraisonDateTimePicker
             // 
             this.dateLivraisonDateTimePicker.Location = new System.Drawing.Point(188, 39);
@@ -358,7 +379,7 @@
             this.aideToolStripMenuItem});
             this.transactionsMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.transactionsMenuStrip.Name = "transactionsMenuStrip";
-            this.transactionsMenuStrip.Size = new System.Drawing.Size(1149, 28);
+            this.transactionsMenuStrip.Size = new System.Drawing.Size(1149, 30);
             this.transactionsMenuStrip.TabIndex = 26;
             this.transactionsMenuStrip.Text = "menuStrip1";
             // 
@@ -368,7 +389,7 @@
             this.enregistrerToolStripMenuItem,
             this.quitterToolStripMenuItem});
             this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
-            this.fichierToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
+            this.fichierToolStripMenuItem.Size = new System.Drawing.Size(66, 26);
             this.fichierToolStripMenuItem.Text = "&Fichier";
             // 
             // enregistrerToolStripMenuItem
@@ -391,7 +412,7 @@
             this.aideToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aproposDeToolStripMenuItem});
             this.aideToolStripMenuItem.Name = "aideToolStripMenuItem";
-            this.aideToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
+            this.aideToolStripMenuItem.Size = new System.Drawing.Size(54, 26);
             this.aideToolStripMenuItem.Text = "&Aide";
             // 
             // aproposDeToolStripMenuItem
@@ -479,27 +500,6 @@
             this.logoDroitPictureBox.TabIndex = 27;
             this.logoDroitPictureBox.TabStop = false;
             // 
-            // paiementLLabel
-            // 
-            this.paiementLLabel.AutoSize = true;
-            this.paiementLLabel.Location = new System.Drawing.Point(36, 221);
-            this.paiementLLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.paiementLLabel.Name = "paiementLLabel";
-            this.paiementLLabel.Size = new System.Drawing.Size(99, 16);
-            this.paiementLLabel.TabIndex = 39;
-            this.paiementLLabel.Text = "Paiement du le:";
-            // 
-            // paiementLabel
-            // 
-            this.paiementLabel.BackColor = System.Drawing.Color.White;
-            this.paiementLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.paiementLabel.Location = new System.Drawing.Point(187, 215);
-            this.paiementLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.paiementLabel.Name = "paiementLabel";
-            this.paiementLabel.Size = new System.Drawing.Size(266, 28);
-            this.paiementLabel.TabIndex = 40;
-            this.paiementLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // VentesMangasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -518,7 +518,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "VentesMangasForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Ventes de mangas";
+            this.Text = "  ";
             this.Load += new System.EventHandler(this.VentesMangasForm_Load);
             this.clientGroupBox.ResumeLayout(false);
             this.clientGroupBox.PerformLayout();

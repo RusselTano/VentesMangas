@@ -14,8 +14,10 @@
 */
 
 using System;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
+using ce = TransactionNS.Transaction.CodeErreurs;
 namespace TransactionNS
 {
     public class Transaction
@@ -26,8 +28,11 @@ namespace TransactionNS
         private decimal[,] tPrix;
         #endregion
 
-        #region Champs prives
-        private int idInt;
+        #region Variables privees
+        private const string CODE_POSTAL_MODELE_Str = "^([ABCEGHJKLMNPRSTVXY]\\d[ABCEGHJKLMNPRSTVWXYZ])\\ {0,1}(\\d[ABCEGHJKLMNPRSTVWXYZ]\\d)$";
+        private const string TELEPHONE_MODELE_Str = "^(\\([2-9]\\d{2}\\)|[2-9]\\d{2})[- .]?\\d{3}[- .]?\\d{4}$";
+
+        private static int idInt;
         private string nomStr;
         private string prenomStr;
         private string adresseStr;
@@ -41,13 +46,91 @@ namespace TransactionNS
         private decimal prixDecimal;
         #endregion
 
+        #region Enumeration
+        public enum CodeErreurs
+        {
+            ECEErreurCodePostalFormat,
+            ECEErreurCodePostalVide,
+            ECEErreurCodePostalNull,
+            ECEErreurTelephoneFormat,
+            ECEErreurTelephoneVide,
+            ECEErreurTelephoneNull,
+        }
+        #endregion
+
+        #region Declaration
+        public static string[] tMessagesErreursStr = new string[15];
+        #endregion
+
+        #region Initialisation
+        public static void InitMessagesErreurs()
+        {
+            tMessagesErreursStr[(int)ce.ECEErreurCodePostalFormat] = "Code postal format invalide";
+            tMessagesErreursStr[(int)ce.ECEErreurCodePostalVide] = "Code postal vide";
+            tMessagesErreursStr[(int)ce.ECEErreurCodePostalNull] = "Code postal null";
+            tMessagesErreursStr[(int)ce.ECEErreurTelephoneFormat] = "Téléphone format invalide";
+            tMessagesErreursStr[(int)ce.ECEErreurTelephoneVide] = "Téléphone vide";
+            tMessagesErreursStr[(int)ce.ECEErreurTelephoneNull] = "Téléphone null";
+        }
+        #endregion
+
         #region Proprietes publiques
         public int IdInt { get => idInt; set => idInt = value; }
         public string NomStr { get => nomStr; set => nomStr = value; }
         public string PrenomStr { get => prenomStr; set => prenomStr = value; }
         public string AdresseStr { get => adresseStr; set => adresseStr = value; }
-        public string CodePostalStr { get => codePostalStr; set => codePostalStr = value; }
-        public string TelephoneStr { get => telephoneStr; set => telephoneStr = value; }
+        public string CodePostalStr
+        {
+            get
+            {
+                return codePostalStr;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    value = value.Trim();
+
+                    if (value != string.Empty)
+                    {
+                        if (Regex.IsMatch(value, CODE_POSTAL_MODELE_Str, RegexOptions.IgnoreCase))
+                            codePostalStr = value;
+                        else
+                            throw new FormatException(tMessagesErreursStr[(int)ce.ECEErreurCodePostalFormat]);
+                    }
+                    else
+                        throw new ArgumentException(tMessagesErreursStr[(int)ce.ECEErreurCodePostalVide]);
+                }
+                else
+                    throw new ArgumentNullException(tMessagesErreursStr[(int)ce.ECEErreurCodePostalNull]);
+            }
+        }
+        public string TelephoneStr
+        {
+            get
+            {
+                return telephoneStr;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    value = value.Trim();
+
+                    if (value != string.Empty)
+                    {
+                        if (Regex.IsMatch(value, TELEPHONE_MODELE_Str))
+                            telephoneStr = value;
+                        else
+                            throw new FormatException(tMessagesErreursStr[(int)ce.ECEErreurTelephoneFormat]);
+                    }
+                    else
+                        throw new ArgumentException(tMessagesErreursStr[(int)ce.ECEErreurTelephoneVide]);
+                }
+                else
+                    throw new ArgumentNullException(tMessagesErreursStr[(int)ce.ECEErreurTelephoneNull]);
+            }
+        }
         public string TypeMangaStr { get => typeMangaStr; set => typeMangaStr = value; }
         public string ModeleMangaStr { get => modeleMangaStr; set => modeleMangaStr = value; }
         public DateTime DateLivraisonDateTime { get => dateLivraisonDateTime; set => dateLivraisonDateTime = value; }
@@ -62,6 +145,7 @@ namespace TransactionNS
             InitGenres();
             InitTitres();
             InitPrix();
+            InitMessagesErreurs();
         }
         #endregion
 
@@ -171,23 +255,25 @@ namespace TransactionNS
         #region Méthode Enregistrer() sans paramètre
         public void Enregistrer()
         {
-            string message = $"Client:\n" +
-                             $"Id:{idInt}\n" +
-                             $"Nom: {nomStr}\n" +
-                             $"Prénom: {prenomStr}\n" +
-                             $"Adresse: {adresseStr}\n" +
-                             $"Code postal: {codePostalStr}\n" +
-                             $"Téléphone: {telephoneStr}\n" +
-                             $"Type de manga: {typeMangaStr}\n" +
-                             $"Modèle de manga: {modeleMangaStr}\n\n" +
-                             $"Transaction:\n" +
-                             $"Date de livraison: {dateLivraisonDateTime.ToString()}\n" +
-                             $"Titre: {titreStr}\n" +
-                             $"Genre: {genreStr}\n" +
-                             $"Prix: {prixDecimal.ToString("C2")}\n\n";
-            Console.WriteLine(message);
+                idInt++;
 
-            MessageBox.Show(message, "Transaction enregistrée", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string message = $"Client:\n" +
+                                 $"Id:{idInt}\n" +
+                                 $"Nom: {nomStr}\n" +
+                                 $"Prénom: {prenomStr}\n" +  
+                                 $"Adresse: {adresseStr}\n" +
+                                 $"Code postal: {codePostalStr}\n" +
+                                 $"Téléphone: {telephoneStr}\n" +
+                                 $"Type de manga: {typeMangaStr}\n" +
+                                 $"Modèle de manga: {modeleMangaStr}\n\n" +
+                                 $"Transaction:\n" +
+                                 $"Date de livraison: {dateLivraisonDateTime}\n" +
+                                 $"Titre: {titreStr}\n" +
+                                 $"Genre: {genreStr}\n" +
+                                 $"Prix: {prixDecimal:C2}\n\n";
+
+                Console.WriteLine(message);
+                MessageBox.Show(message, "Transaction enregistrée", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         #endregion
 
@@ -217,4 +303,5 @@ namespace TransactionNS
         }
         #endregion
     }
+
 }
