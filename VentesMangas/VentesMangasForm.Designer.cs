@@ -521,7 +521,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "VentesMangasForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Ventes de mangas";
+            this.Text = "  ";
             this.Load += new System.EventHandler(this.VentesMangasForm_Load);
             this.clientGroupBox.ResumeLayout(false);
             this.clientGroupBox.PerformLayout();

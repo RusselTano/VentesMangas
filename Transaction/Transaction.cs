@@ -14,8 +14,10 @@
 */
 
 using System;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
+using ce = TransactionNS.Transaction.CodesErreurs;
 namespace TransactionNS
 {
     public class Transaction
@@ -26,8 +28,11 @@ namespace TransactionNS
         private decimal[,] tPrix;
         #endregion
 
-        #region Champs prives
-        private int idInt;
+        #region Variables privees
+        private const string CODE_POSTAL_MODELE_Str = "^([ABCEGHJKLMNPRSTVXY]\\d[ABCEGHJKLMNPRSTVWXYZ])\\ {0,1}(\\d[ABCEGHJKLMNPRSTVWXYZ]\\d)$";
+        private const string TELEPHONE_MODELE_Str = "^(\\([2-9]\\d{2}\\)|[2-9]\\d{2})[- .]?\\d{3}[- .]?\\d{4}$";
+
+        private static int idInt;
         private string nomStr;
         private string prenomStr;
         private string adresseStr;
@@ -42,10 +47,8 @@ namespace TransactionNS
         private decimal prixDecimal;
         #endregion
 
-        #region enumeration et tableaux
-
-        // Énumération des erreurs
-        private enum CodesErreurs
+        #region Enumeration et tableaux
+        public enum CodesErreurs
         {
             NomObligatoire,
             PrenomObligatoire,
@@ -56,32 +59,44 @@ namespace TransactionNS
             TelephoneObligatoire,
             ModeleObligatoire,
             PrixInvalide,
-           TitreInvalide,
-           GenreInvalide,
+            TitreInvalide,
+            GenreInvalide,
             DateLivraisonInvalide,
-            ErreurIndeterminee
+            ErreurIndeterminee,
+            ECEErreurCodePostalFormat,
+            ECEErreurCodePostalVide,
+            ECEErreurCodePostalNull,
+            ECEErreurTelephoneFormat,
+            ECEErreurTelephoneVide,
+            ECEErreurTelephoneNull,
         }
-
-        // Tableau de messages d'erreurs
-        private string[] tMessagesErreurs = new string[15];
-
         #endregion
 
-        #region initialisations messages d 'erreurs
-        private void InitMessagesErreurs()
+        #region Declaration
+        public static string[] tMessagesErreursStr = new string[20];
+        #endregion
+
+        #region Initialisation
+        public static void InitMessagesErreurs()
         {
-            tMessagesErreurs[(int)CodesErreurs.NomObligatoire] = "Le nom est obligatoire.";
-            tMessagesErreurs[(int)CodesErreurs.PrenomObligatoire] = "Le prenom est obligatoire.";
-            tMessagesErreurs[(int)CodesErreurs.AdresseObligatoire] = "L'adresse est obligatoire.";
-            tMessagesErreurs[(int)CodesErreurs.ModeleObligatoire] = "Le modele est obligatoire.";
-            tMessagesErreurs[(int)CodesErreurs.TelephoneObligatoire] = "Le telephone est obligatoire.";
-            tMessagesErreurs[(int)CodesErreurs.TypeMangaObligatoire] = "Le type de manga est obligatoire.";
-            tMessagesErreurs[(int)CodesErreurs.CodePostalObligatoire] = "Le codePostal est obligatoire.";
-            tMessagesErreurs[(int)CodesErreurs.PrixInvalide] = "Le prix est invalide.";
-            tMessagesErreurs[(int)CodesErreurs.TitreInvalide] = "Le titre est invalide.";
-            tMessagesErreurs[(int)CodesErreurs.GenreInvalide] = "Le genre est invalide.";
-            tMessagesErreurs[(int)CodesErreurs.DateLivraisonInvalide] = "La date de livraison est invalide.";
-            tMessagesErreurs[(int)CodesErreurs.ErreurIndeterminee] = "Une erreur indéterminée est survenue.";
+            tMessagesErreursStr[(int)ce.NomObligatoire] = "Le nom est obligatoire.";
+            tMessagesErreursStr[(int)ce.PrenomObligatoire] = "Le prenom est obligatoire.";
+            tMessagesErreursStr[(int)ce.AdresseObligatoire] = "L'adresse est obligatoire.";
+            tMessagesErreursStr[(int)ce.ModeleObligatoire] = "Le modele est obligatoire.";
+            tMessagesErreursStr[(int)ce.TelephoneObligatoire] = "Le telephone est obligatoire.";
+            tMessagesErreursStr[(int)ce.TypeMangaObligatoire] = "Le type de manga est obligatoire.";
+            tMessagesErreursStr[(int)ce.CodePostalObligatoire] = "Le codePostal est obligatoire.";
+            tMessagesErreursStr[(int)ce.PrixInvalide] = "Le prix est invalide.";
+            tMessagesErreursStr[(int)ce.TitreInvalide] = "Le titre est invalide.";
+            tMessagesErreursStr[(int)ce.GenreInvalide] = "Le genre est invalide.";
+            tMessagesErreursStr[(int)ce.DateLivraisonInvalide] = "La date de livraison est invalide.";
+            tMessagesErreursStr[(int)ce.ErreurIndeterminee] = "Une erreur indéterminée est survenue.";
+            tMessagesErreursStr[(int)ce.ECEErreurCodePostalFormat] = "Code postal format invalide";
+            tMessagesErreursStr[(int)ce.ECEErreurCodePostalVide] = "Code postal vide";
+            tMessagesErreursStr[(int)ce.ECEErreurCodePostalNull] = "Code postal null";
+            tMessagesErreursStr[(int)ce.ECEErreurTelephoneFormat] = "Téléphone format invalide";
+            tMessagesErreursStr[(int)ce.ECEErreurTelephoneVide] = "Téléphone vide";
+            tMessagesErreursStr[(int)ce.ECEErreurTelephoneNull] = "Téléphone null";
         }
         #endregion
 
@@ -92,7 +107,7 @@ namespace TransactionNS
             get { return nomStr; }
             set
             {
-                if (value != null )
+                if (value != null)
                 {
                     value = value.Trim();
 
@@ -102,17 +117,17 @@ namespace TransactionNS
                     }
                     else
                     {
-                        throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.NomObligatoire]);
+                        throw new ArgumentException(tMessagesErreursStr[(int)CodesErreurs.NomObligatoire]);
                     }
-
                 }
                 else
                 {
-                    throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.NomObligatoire]);
+                    throw new ArgumentException(tMessagesErreursStr[(int)CodesErreurs.NomObligatoire]);
                 }
             }
         }
-        public string PrenomStr {
+        public string PrenomStr
+        {
             get { return prenomStr; }
             set
             {
@@ -120,19 +135,18 @@ namespace TransactionNS
                 {
                     value = value.Trim();
 
-                    if (value!=string.Empty)
+                    if (value != string.Empty)
                     {
                         prenomStr = value;
                     }
                     else
                     {
-                        throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.PrenomObligatoire]);
+                        throw new ArgumentException(tMessagesErreursStr[(int)CodesErreurs.PrenomObligatoire]);
                     }
-
                 }
                 else
                 {
-                    throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.PrenomObligatoire]);
+                    throw new ArgumentException(tMessagesErreursStr[(int)CodesErreurs.PrenomObligatoire]);
                 }
             }
         }
@@ -151,17 +165,18 @@ namespace TransactionNS
                     }
                     else
                     {
-                        throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.AdresseObligatoire]);
+                        throw new ArgumentException(tMessagesErreursStr[(int)CodesErreurs.AdresseObligatoire]);
                     }
 
                 }
                 else
                 {
-                    throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.AdresseObligatoire]);
+                    throw new ArgumentException(tMessagesErreursStr[(int)CodesErreurs.AdresseObligatoire]);
                 }
             }
         }
-        public string CodePostalStr {
+        public string CodePostalStr
+        {
             get { return codePostalStr; }
             set
             {
@@ -171,45 +186,46 @@ namespace TransactionNS
 
                     if (value != string.Empty)
                     {
-                        codePostalStr = value;
+                        if (Regex.IsMatch(value, CODE_POSTAL_MODELE_Str, RegexOptions.IgnoreCase))
+                            codePostalStr = value;
+                        else
+                            throw new FormatException(tMessagesErreursStr[(int)ce.ECEErreurCodePostalFormat]);
                     }
                     else
-                    {
-                        throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.NomObligatoire]);
-                    }
-
+                        throw new ArgumentException(tMessagesErreursStr[(int)ce.ECEErreurCodePostalVide]);
                 }
                 else
-                {
-                    throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.NomObligatoire]);
-                }
+                    throw new ArgumentNullException(tMessagesErreursStr[(int)ce.ECEErreurCodePostalNull]);
             }
         }
-        public string TelephoneStr {
+
+
+        public string TelephoneStr
+        {
             get { return telephoneStr; }
             set
             {
+
                 if (value != null)
                 {
                     value = value.Trim();
 
                     if (value != string.Empty)
                     {
-                        telephoneStr = value;
+                        if (Regex.IsMatch(value, TELEPHONE_MODELE_Str))
+                            telephoneStr = value;
+                        else
+                            throw new FormatException(tMessagesErreursStr[(int)ce.ECEErreurTelephoneFormat]);
                     }
                     else
-                    {
-                        throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.TelephoneObligatoire]);
-                    }
-
+                        throw new ArgumentException(tMessagesErreursStr[(int)ce.ECEErreurTelephoneVide]);
                 }
                 else
-                {
-                    throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.TelephoneObligatoire]);
-                }
+                    throw new ArgumentNullException(tMessagesErreursStr[(int)ce.ECEErreurTelephoneNull]);
             }
         }
-        public string TypeMangaStr {
+        public string TypeMangaStr
+        {
             get { return typeMangaStr; }
             set
             {
@@ -219,17 +235,17 @@ namespace TransactionNS
 
                     if (value != string.Empty)
                     {
-                       typeMangaStr = value;
+                        typeMangaStr = value;
                     }
                     else
                     {
-                        throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.TypeMangaObligatoire]);
+                        throw new ArgumentException(tMessagesErreursStr[(int)CodesErreurs.TypeMangaObligatoire]);
                     }
 
                 }
                 else
                 {
-                    throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.TypeMangaObligatoire]);
+                    throw new ArgumentException(tMessagesErreursStr[(int)CodesErreurs.TypeMangaObligatoire]);
                 }
             }
         }
@@ -248,13 +264,13 @@ namespace TransactionNS
                     }
                     else
                     {
-                        throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.ModeleObligatoire]);
+                        throw new ArgumentException(tMessagesErreursStr[(int)CodesErreurs.ModeleObligatoire]);
                     }
 
                 }
                 else
                 {
-                    throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.ModeleObligatoire]);
+                    throw new ArgumentException(tMessagesErreursStr[(int)CodesErreurs.ModeleObligatoire]);
                 }
             }
         }
@@ -271,21 +287,22 @@ namespace TransactionNS
                     }
                     else
                     {
-                        throw new ArgumentOutOfRangeException(tMessagesErreurs[(int)CodesErreurs.DateLivraisonInvalide]);
+                        throw new ArgumentOutOfRangeException(tMessagesErreursStr[(int)CodesErreurs.DateLivraisonInvalide]);
                     }
                 }
 
             }
         }
 
-        public DateTime DatePaiement => datePaiement; 
-    
-    
-        public string TitreStr {
+        public DateTime DatePaiement => datePaiement;
+
+
+        public string TitreStr
+        {
             get { return titreStr; }
             set
             {
-                if (value != null &&  (value != string.Empty))
+                if (value != null && (value != string.Empty))
                 {
                     if (Array.IndexOf(tTitres, value.Trim()) != -1)
                     {
@@ -293,16 +310,17 @@ namespace TransactionNS
                     }
                     else
                     {
-                        throw new ArgumentOutOfRangeException(tMessagesErreurs[(int)CodesErreurs.TitreInvalide]);
+                        throw new ArgumentOutOfRangeException(tMessagesErreursStr[(int)CodesErreurs.TitreInvalide]);
                     }
                 }
                 else
                 {
-                    throw new ArgumentNullException(tMessagesErreurs[(int)CodesErreurs.TitreInvalide]);
+                    throw new ArgumentNullException(tMessagesErreursStr[(int)CodesErreurs.TitreInvalide]);
                 }
             }
         }
-        public string GenreStr {
+        public string GenreStr
+        {
             get { return genreStr; }
             set
             {
@@ -314,17 +332,18 @@ namespace TransactionNS
                     }
                     else
                     {
-                        throw new ArgumentOutOfRangeException(tMessagesErreurs[(int)CodesErreurs.GenreInvalide]);
+                        throw new ArgumentOutOfRangeException(tMessagesErreursStr[(int)CodesErreurs.GenreInvalide]);
                     }
                 }
                 else
                 {
-                    throw new ArgumentNullException(tMessagesErreurs[(int)CodesErreurs.GenreInvalide]);
+                    throw new ArgumentNullException(tMessagesErreursStr[(int)CodesErreurs.GenreInvalide]);
                 }
 
             }
         }
-        public decimal PrixDecimal {
+        public decimal PrixDecimal
+        {
             get { return prixDecimal; }
             set
             {
@@ -344,25 +363,26 @@ namespace TransactionNS
                             }
                             else
                             {
-                                throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.PrixInvalide]);
+                                throw new ArgumentException(tMessagesErreursStr[(int)CodesErreurs.PrixInvalide]);
                             }
-                       }
+                        }
                         else
                         {
-                            throw new ArgumentException(tMessagesErreurs[(int)CodesErreurs.ErreurIndeterminee]);
+                            throw new ArgumentException(tMessagesErreursStr[(int)CodesErreurs.ErreurIndeterminee]);
                         }
                     }
                     else
                     {
-                        throw new ArgumentNullException(tMessagesErreurs[(int)CodesErreurs.ErreurIndeterminee]);
+                        throw new ArgumentNullException(tMessagesErreursStr[(int)CodesErreurs.ErreurIndeterminee]);
                     }
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException(tMessagesErreurs[(int)CodesErreurs.PrixInvalide]);
+                    throw new ArgumentOutOfRangeException(tMessagesErreursStr[(int)CodesErreurs.PrixInvalide]);
                 }
             }
         }
+
         #endregion
 
         #region Constructeur
@@ -497,7 +517,7 @@ namespace TransactionNS
                              $"Date de paiement: {datePaiement.ToString()}\n" +
                              $"Prix: {prixDecimal.ToString("C2")}\n\n";
             Console.WriteLine(message);
-
+            idInt++;
             MessageBox.Show(message, "Transaction enregistrée", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         #endregion
@@ -525,7 +545,7 @@ namespace TransactionNS
             titreStr = titrePrinc;
             genreStr = genrePrinc;
             prixDecimal = prixPrinc;
-            datePaiement=datePaiementPrinc;
+            datePaiement = datePaiementPrinc;
         }
         #endregion
     }
