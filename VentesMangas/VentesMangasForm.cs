@@ -213,8 +213,8 @@ namespace VentesMangas
             adresseMaskedTextBox.Text = "555 Duke street";
             codePostalMaskedTextBox.Text = "E2A 2K9";
             telephoneMaskedTextBox.Text = "506-555-5555";
-            dateLivraisonDateTimePicker.Format = DateTimePickerFormat.Custom;
-            dateLivraisonDateTimePicker.CustomFormat = "yyyy-MMM-dd";
+            //dateLivraisonDateTimePicker.Format = DateTimePickerFormat.Custom;
+            //dateLivraisonDateTimePicker.CustomFormat = "yyyy-MMM-dd";
             dateLivraisonDateTimePicker.Value = DateTime.Now;
             prixLabel.Text = oTrans.GetPrix(titreComboBox.SelectedIndex, genreComboBox.SelectedIndex).ToString("c2");
         }

@@ -181,7 +181,7 @@ namespace TransactionNS
                              $"Type de manga: {typeMangaStr}\n" +
                              $"Modèle de manga: {modeleMangaStr}\n\n" +
                              $"Transaction:\n" +
-                             $"Date de livraison: {dateLivraisonDateTime.ToString("yyyy-MMM-dd h:mm tt")}\n" +
+                             $"Date de livraison: {dateLivraisonDateTime.ToString()}\n" +
                              $"Titre: {titreStr}\n" +
                              $"Genre: {genreStr}\n" +
                              $"Prix: {prixDecimal.ToString("C2")}\n\n";
