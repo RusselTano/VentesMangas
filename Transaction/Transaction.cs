@@ -14,6 +14,10 @@
 */
 
 using System;
+using System.Globalization;
+using System.IO;
+using System.Net;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -23,9 +27,11 @@ namespace TransactionNS
     public class Transaction
     {
         #region Declaration des tableaux
-        private string[] tTitres;
-        private string[] tGenres;
-        private decimal[,] tPrix;
+        private string[] tTitres=new String[20];
+        private string[] tGenres= new String[20];
+        private  decimal[,] tPrix = new decimal[20, 20];
+        //private decimal[,] tPrix;
+        private CultureInfo anglaisCultureInfo= new CultureInfo("en-CA");
         #endregion
 
         #region Variables privees
@@ -69,11 +75,18 @@ namespace TransactionNS
             ECEErreurTelephoneFormat,
             ECEErreurTelephoneVide,
             ECEErreurTelephoneNull,
+            ECEErreurFileNotFoundTitre,
+            ECEErreurFileNotFoundGenre,
+            ECEErreurFileNotFoundPrix,
+            ECEErreurFormatTitre,
+            ECEErreurFormatGenre,
+            ECEErreurFormatPrix,
+            ECEErreurIndeterminer,
         }
         #endregion
 
         #region Declaration
-        public static string[] tMessagesErreursStr = new string[20];
+        public static string[] tMessagesErreursStr = new string[50];
         #endregion
 
         #region Initialisation
@@ -97,6 +110,13 @@ namespace TransactionNS
             tMessagesErreursStr[(int)ce.ECEErreurTelephoneFormat] = "Téléphone format invalide";
             tMessagesErreursStr[(int)ce.ECEErreurTelephoneVide] = "Téléphone vide";
             tMessagesErreursStr[(int)ce.ECEErreurTelephoneNull] = "Téléphone null";
+            tMessagesErreursStr[(int)ce.ECEErreurFileNotFoundTitre] = "Le fichier des titres n’est pas disponible.";
+            tMessagesErreursStr[(int)ce.ECEErreurFormatTitre] = "Le format specifier pour les titres est incorect.";
+            tMessagesErreursStr[(int)ce.ECEErreurFileNotFoundGenre] = "Le fichier des genres n’est pas disponible.";
+            tMessagesErreursStr[(int)ce.ECEErreurFormatGenre] = "Le format specifier pour les genres est incorect.";
+            tMessagesErreursStr[(int)ce.ECEErreurFileNotFoundPrix] = "Le fichier des prix n’est pas disponible.";
+            tMessagesErreursStr[(int)ce.ECEErreurFormatPrix] = "Le format specifier pour les prix est incorect.";
+            tMessagesErreursStr[(int)ce.ECEErreurIndeterminer] = "veuillez contacter la personne ressources erreur indeterminer";
         }
         #endregion
 
@@ -408,37 +428,125 @@ namespace TransactionNS
         /// </summary>
         private void InitTitres()
         {
-            tTitres = new string[5] { "Naruto", "Cardcaptor Sakura", "Berserk", "Your Lie in April", "Oyasumi Punpun" };
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "Titre.data");
+
+            try
+            {
+                String ligne;
+                using (StreamReader sr = new StreamReader(filePath, System.Text.Encoding.UTF8))
+                {
+                    int nombre;
+                    ligne = sr.ReadLine();
+                    nombre = int.Parse(ligne);
+                     Array.Resize(ref tTitres, nombre);
+                   // tTitres=new string[nombre];
+                    for (int i = 0; i < nombre; i++)
+                    {
+                        tTitres[i] = sr.ReadLine().Trim();
+                    }
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                throw new FileNotFoundException(tMessagesErreursStr[(int)CodesErreurs.ECEErreurFileNotFoundTitre]);
+            }
+
+            catch (FormatException)
+            {
+                throw new FormatException(tMessagesErreursStr[(int)CodesErreurs.ECEErreurFormatTitre]);
+            }
+
+            catch (Exception)
+            { throw new Exception(tMessagesErreursStr[(int)CodesErreurs.ECEErreurIndeterminer]); }
         }
         /// <summary>
         /// methode pour initialiser les genres
         /// </summary>
         private void InitGenres()
         {
-            tGenres = new string[5] { "Shonen", "Shojo", "Seinen", "Josei", "Seinen" };
+    
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "Genres.data");
+            try
+            {
+
+                using (StreamReader sr = new StreamReader(filePath, System.Text.Encoding.UTF8))
+                {
+
+                    string ligne = sr.ReadLine();
+                    int nombre = int.Parse(ligne);
+                    Array.Resize(ref tGenres, nombre);
+
+                    for (int i = 0; i < nombre; i++)
+                    {
+                        tGenres[i] = sr.ReadLine().Trim();
+                    }
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                throw new FileNotFoundException(tMessagesErreursStr[(int)CodesErreurs.ECEErreurFileNotFoundGenre]);
+            }
+
+            catch (FormatException)
+            {
+                throw new FormatException(tMessagesErreursStr[(int)CodesErreurs.ECEErreurFormatGenre]);
+            }
+
+            catch (Exception ex)
+            { throw new Exception(tMessagesErreursStr[(int)CodesErreurs.ECEErreurIndeterminer]); }
+
         }
         /// <summary>
         /// methode pour initialiser les prix
         /// </summary>
         private void InitPrix()
         {
-            tPrix = new decimal[5, 5]
-            {
-                { 8.99m, 7.99m, 10.99m, 8.50m, 9.49m },
-                { 6.99m, 5.99m, 8.99m, 7.50m, 8.49m },
-                { 12.99m, 11.99m, 14.99m, 13.50m, 14.49m },
-                { 7.99m, 6.99m, 9.99m, 8.50m, 9.49m },
-                { 9.99m, 8.99m, 11.99m, 10.50m, 11.49m }
-            };
-        }
-        #endregion
+            
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "Prix.data");
 
-        #region Titres de mangas
-        /// <summary>
-        /// methode pour retourner les titres
-        /// </summary>
-        /// <returns>un tableau de titre</returns>
-        public string[] GetTitres()
+            try
+            {
+
+                using (StreamReader sr = new StreamReader(filePath, System.Text.Encoding.UTF8))
+                {
+
+                    int rangée = tTitres.Length ;
+                    int colonne = tGenres.Length ;
+                    ResizeArray(ref tPrix, rangée, colonne);
+                    for (int i = 0; i < rangée; i++)
+                    {
+                        for (int j = 0; j < colonne; j++)
+                        { tPrix[i, j] = Decimal.Parse(sr.ReadLine(), anglaisCultureInfo); }
+
+
+                    }
+                   
+                }
+
+
+            }
+            catch (FileNotFoundException)
+            {
+                throw new FileNotFoundException(tMessagesErreursStr[(int)CodesErreurs.ECEErreurFileNotFoundPrix]);
+            }
+
+            catch (FormatException)
+            {
+                throw new FormatException(tMessagesErreursStr[(int)CodesErreurs.ECEErreurFormatPrix]);
+            }
+
+            catch (Exception)
+            { throw new Exception(tMessagesErreursStr[(int)CodesErreurs.ECEErreurIndeterminer]); }
+        }
+    #endregion
+
+
+    #region Titres de mangas
+    /// <summary>
+    /// methode pour retourner les titres
+    /// </summary>
+    /// <returns>un tableau de titre</returns>
+    public string[] GetTitres()
         {
             return tTitres;
         }
@@ -548,5 +656,17 @@ namespace TransactionNS
             datePaiement = datePaiementPrinc;
         }
         #endregion
+
+
+        #region Méthode privée ResizeArray
+
+        private void ResizeArray(ref decimal [,] prix, int pRangé, int pColonne)
+        {
+            prix = new decimal[pRangé, pColonne];
+        }
+        #endregion
+
+
+
     }
 }

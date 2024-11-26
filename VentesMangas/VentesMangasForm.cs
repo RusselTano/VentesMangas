@@ -201,6 +201,8 @@ namespace VentesMangas
         #region Methodes Privees
         private void InitValue()
         {
+            
+
             titreComboBox.SelectedIndexChanged -= TransactionComboBox_SelectedIndexChanged;
             genreComboBox.SelectedIndexChanged -= TransactionComboBox_SelectedIndexChanged;
 

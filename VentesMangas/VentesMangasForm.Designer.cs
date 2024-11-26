@@ -104,7 +104,7 @@
             this.clientGroupBox.Controls.Add(this.adresseLabel);
             this.clientGroupBox.Controls.Add(this.prenomLabel);
             this.clientGroupBox.Controls.Add(this.nomLabel);
-            this.clientGroupBox.Location = new System.Drawing.Point(36, 529);
+            this.clientGroupBox.Location = new System.Drawing.Point(45, 498);
             this.clientGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.clientGroupBox.Name = "clientGroupBox";
             this.clientGroupBox.Padding = new System.Windows.Forms.Padding(4);
@@ -259,7 +259,7 @@
             this.transactionGroupBox.Controls.Add(this.prixLLabel);
             this.transactionGroupBox.Controls.Add(this.genresLabel);
             this.transactionGroupBox.Controls.Add(this.titresLabel);
-            this.transactionGroupBox.Location = new System.Drawing.Point(849, 529);
+            this.transactionGroupBox.Location = new System.Drawing.Point(849, 498);
             this.transactionGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.transactionGroupBox.Name = "transactionGroupBox";
             this.transactionGroupBox.Padding = new System.Windows.Forms.Padding(4);

@@ -13,6 +13,11 @@
     But:            Gérer et fournir les listes de types et de modèles de mangas
 */
 using System;
+using System.IO;
+using System.Net;
+using System.Reflection;
+using System.Security.Cryptography;
+
 
 namespace TypesNS
 {
@@ -27,8 +32,8 @@ namespace TypesNS
         #endregion
 
         #region Declarations
-        private string[] tTypes;
-        private string[] tModeles;
+        private string[] tTypes = new string[20];
+        private string[] tModeles = new string[40];
         #endregion
 
         #region Constructeur
@@ -46,12 +51,65 @@ namespace TypesNS
         /// 
         private void InitTypes()
         {
-            tTypes = new string[] { "Édition Standard", "Édition Collector", "Édition Deluxe", "Édition limitée", "Box Set" };
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "Types.data");
+            StreamReader sr ;
+            try
+            {
+                String ligne;
+                  sr = new StreamReader(filePath, System.Text.Encoding.UTF8);
+
+                ligne = sr.ReadLine();
+                int i = 0;
+                while (ligne != null)
+                {
+                    tTypes[i] = ligne;
+                    ligne = sr.ReadLine();
+                    i++;
+                }
+                Array.Resize(ref tTypes, i);
+            }
+            catch (FileNotFoundException)
+            {
+
+                throw new FileNotFoundException("Le fichier des types n’est pas disponible.");
+            }
+            catch (Exception)
+            {
+                throw new Exception("Erreur indéterminée dans la lecture des types.");
+            }
+
         }
         private void InitModeles()
         {
-            tModeles = new string[] { "Blu-Ray", "DVD", "Streaming", "Digital Download" };
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "modeles.data");
+            StreamReader sr;
+            try
+            {
+                String ligne;
+               sr = new StreamReader(filePath, System.Text.Encoding.UTF8);
+
+                ligne = sr.ReadLine();
+                int i = 0;
+                while(ligne != null)
+               {
+                    tModeles[i] = ligne;
+                    ligne = sr.ReadLine();
+                    i++;
+                }
+                Array.Resize(ref tModeles, i);
+            }
+            catch(FileNotFoundException)
+            {
+                
+                throw new FileNotFoundException("LE fichier des modèles n’est pas disponible.", nameof(tModeles));
+            }
+            catch(Exception)
+            {
+                throw new Exception("Erreur indéterminée dans la lecture des modèles.");
+            }
         }
+
+    
         #endregion
 
         #region Type ou modele
