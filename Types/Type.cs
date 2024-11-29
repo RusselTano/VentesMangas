@@ -77,7 +77,6 @@ namespace TypesNS
             {
                 throw new Exception("Erreur indéterminée dans la lecture des types.");
             }
-
         }
         private void InitModeles()
         {
@@ -100,7 +99,6 @@ namespace TypesNS
             }
             catch(FileNotFoundException)
             {
-                
                 throw new FileNotFoundException("LE fichier des modèles n’est pas disponible.", nameof(tModeles));
             }
             catch(Exception)
@@ -108,8 +106,6 @@ namespace TypesNS
                 throw new Exception("Erreur indéterminée dans la lecture des modèles.");
             }
         }
-
-    
         #endregion
 
         #region Type ou modele

@@ -90,7 +90,6 @@ namespace VentesMangas
                 MessageBox.Show(g.tMessagesErreursStr[(int)ce.CEErreurIndeterminee], "Prix", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         #endregion
 
         #region Boite de dialogue
@@ -109,9 +108,8 @@ namespace VentesMangas
         #endregion
 
         #region Enregistrer
-        private void enregistrerButton_Click(object sender, EventArgs e)
+        private void EnregistrerButton_Click(object sender, EventArgs e)
         {
-
             Enregistrer_Click();
         }
         #endregion
@@ -151,7 +149,7 @@ namespace VentesMangas
         {
             try
             {
-                oTrans.NomStr = nomMaskedTextBox.Text;
+                oTrans.NomStr = nomMaskedTextBox.Text;   
                 oTrans.PrenomStr = prenomMaskedTextBox.Text;
                 oTrans.AdresseStr = adresseMaskedTextBox.Text;
                 oTrans.CodePostalStr = codePostalMaskedTextBox.Text;
@@ -165,6 +163,10 @@ namespace VentesMangas
                 paiementLabel.Text = oTrans.DatePaiement.ToLongDateString();
                 oTrans.Enregistrer();
 
+            }
+            catch (ApplicationException ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -201,8 +203,6 @@ namespace VentesMangas
         #region Methodes Privees
         private void InitValue()
         {
-            
-
             titreComboBox.SelectedIndexChanged -= TransactionComboBox_SelectedIndexChanged;
             genreComboBox.SelectedIndexChanged -= TransactionComboBox_SelectedIndexChanged;
 
@@ -230,7 +230,7 @@ namespace VentesMangas
         #endregion
 
         #region Quitter
-        private void quitterButton_Click(object sender, EventArgs e)
+        private void QuitterButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -239,14 +239,10 @@ namespace VentesMangas
         #region validation date de livraison
         private void dateLivraisonLabel_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (DateTime.TryParse(dateLivraisonLabel.Text, out DateTime date))
-            {
-                dateLivraisonLabel.Text = date.ToLongDateString();
-            }
+            if (DateTime.TryParse(dateLivraisonLabel.Text, out DateTime date))       
+                dateLivraisonLabel.Text = date.ToLongDateString();         
             else
-            {
                 dateLivraisonLabel.Text = DateTime.Now.ToLongDateString();
-            }
         }
         #endregion
     }
