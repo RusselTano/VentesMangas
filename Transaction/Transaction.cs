@@ -14,6 +14,10 @@
 */
 
 using System;
+using System.Globalization;
+using System.IO;
+using System.Net;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -23,14 +27,16 @@ namespace TransactionNS
     public class Transaction
     {
         #region Declaration des tableaux
-        private string[] tTitres;
-        private string[] tGenres;
-        private decimal[,] tPrix;
+        private string[] tTitres = new String[20];
+        private string[] tGenres = new String[20];
+        private decimal[,] tPrix = new decimal[20, 20];
+        private CultureInfo anglaisCultureInfo = new CultureInfo("en-CA");
         #endregion
 
         #region Variables privees
         private const string CODE_POSTAL_MODELE_Str = "^([ABCEGHJKLMNPRSTVXY]\\d[ABCEGHJKLMNPRSTVWXYZ])\\ {0,1}(\\d[ABCEGHJKLMNPRSTVWXYZ]\\d)$";
         private const string TELEPHONE_MODELE_Str = "^(\\([2-9]\\d{2}\\)|[2-9]\\d{2})[- .]?\\d{3}[- .]?\\d{4}$";
+        private const string delimiter = ";";
 
         private static int idInt;
         private string nomStr;
@@ -69,11 +75,18 @@ namespace TransactionNS
             ECEErreurTelephoneFormat,
             ECEErreurTelephoneVide,
             ECEErreurTelephoneNull,
+            ECEErreurFileNotFoundTitre,
+            ECEErreurFileNotFoundGenre,
+            ECEErreurFileNotFoundPrix,
+            ECEErreurFormatTitre,
+            ECEErreurFormatGenre,
+            ECEErreurFormatPrix,
+            ECEErreurIndeterminer,
         }
         #endregion
 
         #region Declaration
-        public static string[] tMessagesErreursStr = new string[20];
+        public static string[] tMessagesErreursStr = new string[50];
         #endregion
 
         #region Initialisation
@@ -97,11 +110,18 @@ namespace TransactionNS
             tMessagesErreursStr[(int)ce.ECEErreurTelephoneFormat] = "Téléphone format invalide";
             tMessagesErreursStr[(int)ce.ECEErreurTelephoneVide] = "Téléphone vide";
             tMessagesErreursStr[(int)ce.ECEErreurTelephoneNull] = "Téléphone null";
+            tMessagesErreursStr[(int)ce.ECEErreurFileNotFoundTitre] = "Le fichier des titres n’est pas disponible.";
+            tMessagesErreursStr[(int)ce.ECEErreurFormatTitre] = "Le format specifier pour les titres est incorect.";
+            tMessagesErreursStr[(int)ce.ECEErreurFileNotFoundGenre] = "Le fichier des genres n’est pas disponible.";
+            tMessagesErreursStr[(int)ce.ECEErreurFormatGenre] = "Le format specifier pour les genres est incorect.";
+            tMessagesErreursStr[(int)ce.ECEErreurFileNotFoundPrix] = "Le fichier des prix n’est pas disponible.";
+            tMessagesErreursStr[(int)ce.ECEErreurFormatPrix] = "Le format specifier pour les prix est incorect.";
+            tMessagesErreursStr[(int)ce.ECEErreurIndeterminer] = "veuillez contacter la personne ressources erreur indeterminer";
         }
         #endregion
 
         #region Proprietes publiques
-        public int IdInt { get => idInt; set => idInt = value; }
+        public readonly int IdInt;
         public string NomStr
         {
             get { return nomStr; }
@@ -167,7 +187,6 @@ namespace TransactionNS
                     {
                         throw new ArgumentException(tMessagesErreursStr[(int)CodesErreurs.AdresseObligatoire]);
                     }
-
                 }
                 else
                 {
@@ -198,8 +217,6 @@ namespace TransactionNS
                     throw new ArgumentNullException(tMessagesErreursStr[(int)ce.ECEErreurCodePostalNull]);
             }
         }
-
-
         public string TelephoneStr
         {
             get { return telephoneStr; }
@@ -290,13 +307,9 @@ namespace TransactionNS
                         throw new ArgumentOutOfRangeException(tMessagesErreursStr[(int)CodesErreurs.DateLivraisonInvalide]);
                     }
                 }
-
             }
         }
-
         public DateTime DatePaiement => datePaiement;
-
-
         public string TitreStr
         {
             get { return titreStr; }
@@ -339,7 +352,6 @@ namespace TransactionNS
                 {
                     throw new ArgumentNullException(tMessagesErreursStr[(int)CodesErreurs.GenreInvalide]);
                 }
-
             }
         }
         public decimal PrixDecimal
@@ -382,7 +394,6 @@ namespace TransactionNS
                 }
             }
         }
-
         #endregion
 
         #region Constructeur
@@ -408,28 +419,104 @@ namespace TransactionNS
         /// </summary>
         private void InitTitres()
         {
-            tTitres = new string[5] { "Naruto", "Cardcaptor Sakura", "Berserk", "Your Lie in April", "Oyasumi Punpun" };
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "Titre.data");
+            Console.WriteLine(filePath);
+            try
+            {
+                String ligne;
+                using (StreamReader sr = new StreamReader(filePath, System.Text.Encoding.UTF8))
+                {
+                    int nombre;
+                    ligne = sr.ReadLine();
+                    nombre = int.Parse(ligne);
+                    Array.Resize(ref tTitres, nombre);
+                    for (int i = 0; i < nombre; i++)           
+                        tTitres[i] = sr.ReadLine().Trim();
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                throw new FileNotFoundException(tMessagesErreursStr[(int)CodesErreurs.ECEErreurFileNotFoundTitre]);
+            }
+            catch (FormatException)
+            {
+                throw new FormatException(tMessagesErreursStr[(int)CodesErreurs.ECEErreurFormatTitre]);
+            }
+            catch (Exception)
+            { throw new Exception(tMessagesErreursStr[(int)CodesErreurs.ECEErreurIndeterminer]); }
         }
         /// <summary>
         /// methode pour initialiser les genres
         /// </summary>
         private void InitGenres()
         {
-            tGenres = new string[5] { "Shonen", "Shojo", "Seinen", "Josei", "Seinen" };
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "Genres.data");
+            try
+            {
+                using (StreamReader sr = new StreamReader(filePath, System.Text.Encoding.UTF8))
+                {
+                    string ligne = sr.ReadLine();
+                    int nombre = int.Parse(ligne);
+                    Array.Resize(ref tGenres, nombre);
+
+                    for (int i = 0; i < nombre; i++)
+                        tGenres[i] = sr.ReadLine().Trim();
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                throw new FileNotFoundException(tMessagesErreursStr[(int)CodesErreurs.ECEErreurFileNotFoundGenre]);
+            }
+
+            catch (FormatException)
+            {
+                throw new FormatException(tMessagesErreursStr[(int)CodesErreurs.ECEErreurFormatGenre]);
+            }
+
+            catch (Exception ex)
+            { throw new Exception(tMessagesErreursStr[(int)CodesErreurs.ECEErreurIndeterminer]); }
+
         }
         /// <summary>
         /// methode pour initialiser les prix
         /// </summary>
         private void InitPrix()
         {
-            tPrix = new decimal[5, 5]
+
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "Prix.data");
+
+            try
             {
-                { 8.99m, 7.99m, 10.99m, 8.50m, 9.49m },
-                { 6.99m, 5.99m, 8.99m, 7.50m, 8.49m },
-                { 12.99m, 11.99m, 14.99m, 13.50m, 14.49m },
-                { 7.99m, 6.99m, 9.99m, 8.50m, 9.49m },
-                { 9.99m, 8.99m, 11.99m, 10.50m, 11.49m }
-            };
+
+                using (StreamReader sr = new StreamReader(filePath, System.Text.Encoding.UTF8))
+                {
+
+                    int rangée = tTitres.Length;
+                    int colonne = tGenres.Length;
+                    ResizeArray(ref tPrix, rangée, colonne);
+                    for (int i = 0; i < rangée; i++)
+                    {
+                        for (int j = 0; j < colonne; j++)
+                        { tPrix[i, j] = Decimal.Parse(sr.ReadLine(), anglaisCultureInfo); }
+
+
+                    }
+
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                throw new FileNotFoundException(tMessagesErreursStr[(int)CodesErreurs.ECEErreurFileNotFoundPrix]);
+            }
+
+            catch (FormatException)
+            {
+                throw new FormatException(tMessagesErreursStr[(int)CodesErreurs.ECEErreurFormatPrix]);
+            }
+            catch (Exception)
+            { 
+                throw new Exception(tMessagesErreursStr[(int)CodesErreurs.ECEErreurIndeterminer]); 
+            }
         }
         #endregion
 
@@ -501,24 +588,43 @@ namespace TransactionNS
         #region Méthode Enregistrer() sans paramètre
         public void Enregistrer()
         {
-            string message = $"Client:\n" +
-                             $"Id:{idInt}\n" +
-                             $"Nom: {nomStr}\n" +
-                             $"Prénom: {prenomStr}\n" +
-                             $"Adresse: {adresseStr}\n" +
-                             $"Code postal: {codePostalStr}\n" +
-                             $"Téléphone: {telephoneStr}\n" +
-                             $"Type de manga: {typeMangaStr}\n" +
-                             $"Modèle de manga: {modeleMangaStr}\n\n" +
-                             $"Transaction:\n" +
-                             $"Date de livraison: {dateLivraisonDateTime.ToString()}\n" +
-                             $"Titre: {titreStr}\n" +
-                             $"Genre: {genreStr}\n" +
-                             $"Date de paiement: {datePaiement.ToString()}\n" +
-                             $"Prix: {prixDecimal.ToString("C2")}\n\n";
-            Console.WriteLine(message);
-            idInt++;
-            MessageBox.Show(message, "Transaction enregistrée", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            string projectRoot = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName;
+            string filePath = Path.Combine(projectRoot, "Data", "Transaction.data");
+
+            if(TransactionCompplete())
+            {
+                idInt = (int)(DateTime.Now.Ticks % int.MaxValue);
+                string message = $"Client:\n" +
+                 $"Id:{idInt}\n" +
+                 $"Nom: {nomStr}\n" +
+                 $"Prénom: {prenomStr}\n" +
+                 $"Adresse: {adresseStr}\n" +
+                 $"Code postal: {codePostalStr}\n" +
+                 $"Téléphone: {telephoneStr}\n" +
+                 $"Type de manga: {typeMangaStr}\n" +
+                 $"Modèle de manga: {modeleMangaStr}\n\n" +
+                 $"Transaction:\n" +
+                 $"Date de livraison: {dateLivraisonDateTime}\n" +
+                 $"Titre: {titreStr}\n" +
+                 $"Genre: {genreStr}\n" +
+                 $"Date de paiement: {datePaiement}\n" +
+                 $"Prix: {prixDecimal:C2}\n\n";
+                Console.WriteLine(message);
+                MessageBox.Show(message, "Transaction enregistrée", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                try
+                {
+                    using (StreamWriter sw = new StreamWriter(filePath, true)) 
+                    {
+                        message = string.Join(delimiter, idInt, nomStr, prenomStr, adresseStr, codePostalStr, telephoneStr, typeMangaStr, modeleMangaStr, dateLivraisonDateTime, datePaiement, titreStr, genreStr, prixDecimal);
+                        sw.WriteLine(message);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new IOException("Une erreur est survenue lors de l'enregistrement de la transaction.", ex);
+                }
+            }
         }
         #endregion
 
@@ -547,6 +653,31 @@ namespace TransactionNS
             prixDecimal = prixPrinc;
             datePaiement = datePaiementPrinc;
         }
+        public bool TransactionCompplete()
+        {
+            // Vérifie que toutes les propriétés obligatoires sont renseignées.
+            return !string.IsNullOrWhiteSpace(nomStr) &&
+                   !string.IsNullOrWhiteSpace(prenomStr) &&
+                   !string.IsNullOrWhiteSpace(adresseStr) &&
+                   !string.IsNullOrWhiteSpace(codePostalStr) &&
+                   !string.IsNullOrWhiteSpace(telephoneStr) &&
+                   !string.IsNullOrWhiteSpace(typeMangaStr) &&
+                   !string.IsNullOrWhiteSpace(modeleMangaStr) &&
+                   !string.IsNullOrWhiteSpace(genreStr) &&
+                   !string.IsNullOrWhiteSpace(titreStr) &&
+                   prixDecimal > 0 &&
+                   dateLivraisonDateTime != default &&
+                   datePaiement != default;
+        }
+
         #endregion
+
+        #region Méthode privée ResizeArray
+        private void ResizeArray(ref decimal[,] prix, int pRangé, int pColonne)
+        {
+            prix = new decimal[pRangé, pColonne];
+        }
+        #endregion
+
     }
 }
