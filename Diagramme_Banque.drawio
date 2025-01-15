@@ -5,7 +5,7 @@
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="LMufSa5R5OCMJCitS5I9-43" value="EXERCICE 1 Banque" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="80" y="20" width="130" height="30" as="geometry" />
+          <mxGeometry x="80" y="20" width="90" height="30" as="geometry" />
         </mxCell>
         <mxCell id="LMufSa5R5OCMJCitS5I9-44" value="Manuela Kengmo" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="910" y="20" width="120" height="30" as="geometry" />
